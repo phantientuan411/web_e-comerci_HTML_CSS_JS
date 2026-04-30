@@ -1,0 +1,250 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 20px 50px;
+    font-size: 14px;
+}
+
+.Home {
+    text-decoration: none;
+    color: gray;
+    transition: 0.3s;
+}
+
+.Home:hover {
+    color: #db4444; 
+}
+
+.Cart {
+    font-weight: bold;
+    color: black;
+}
+
+.cart-head, .cart-item {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr 1.5fr 1fr; 
+    align-items: center;
+    padding: 20px 40px;
+    margin: 0 50px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.05);
+}
+
+.cart-head {
+    font-weight: 600;
+    margin-top: 30px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.price, .product-price, 
+.quantity, .product-quantity-container,
+.subtotal, .product-subtotal {
+    text-align: center;
+}
+
+.subtotal, .product-subtotal {
+    text-align: right;
+}
+
+.cart-item {
+    margin-top: 20px;
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.cart-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.product-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.delete {
+    position: absolute;
+    top: -5px;
+    left: -10px;
+    width: 20px;
+    height: 20px;
+    color: white;
+    background-color: #db4444;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    display: none; 
+    z-index: 10;
+}
+
+.cart-item:hover .delete {
+    display: block;
+}
+
+.product-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid #ccc;
+    border-radius: 4px;
+    width: fit-content;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.product-quantity button {
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.product-quantity button:hover {
+    background-color: #db4444;
+    color: white;
+}
+
+.product-quantity input {
+    border: none;
+    border-left: 1.5px solid #ccc;
+    border-right: 1.5px solid #ccc;
+    width: 40px;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px 0;
+    -moz-appearance: textfield;
+}
+
+.product-quantity input::-webkit-outer-spin-button,
+.product-quantity input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.cart-button {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 50px;
+}
+
+.shop, .update {
+    text-decoration: none;
+    padding: 12px 30px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: black;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.shop:hover, .update:hover {
+    background-color: #db4444;
+    border-color: #db4444;
+    color: white;
+}
+
+.cart-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 60px 50px;
+    gap: 40px;
+}
+
+.coupon {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.coupon-code input {
+    padding: 12px 15px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    width: 250px;
+    outline: none;
+}
+
+.apply-coupon button {
+    padding: 12px 25px;
+    background-color: #db4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.apply-coupon button:hover {
+    background-color: #c13e3e;
+}
+
+.cart-total {
+    border: 1.5px solid black;
+    border-radius: 4px;
+    padding: 25px;
+    width: 400px;
+}
+
+.cart-total h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.row1, .row2, .row3, .row4 {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    font-size: 16px;
+}
+
+.row4 {
+    font-weight: bold;
+}
+
+.gotocheckout {
+    margin-top: 20px;
+}
+
+.gotocheckout button {
+    width: 100%;
+    padding: 15px;
+    background-color: #db4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.gotocheckout button:hover {
+    background-color: #222;
+}
+
+.message {
+    margin-top: 10px;
+    font-size: 13px;
+    font-style: italic;
+}

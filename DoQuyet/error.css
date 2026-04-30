@@ -1,0 +1,66 @@
+/* 1. Thiết lập chung cho toàn trang */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Đảm bảo em đã nhúng Google Font ở bài trước */
+    line-height: 1.5;
+}
+
+/* 2. Khung chứa giới hạn độ rộng */
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* 3. Style cho đường dẫn (Breadcrumb) */
+.breadcurmb { /* Thầy giữ nguyên tên class của em nhé */
+    margin: 80px 0;
+    font-size: 14px;
+    color: #808080;
+}
+
+.breadcurmb span {
+    color: #000;
+}
+
+/* 4. CĂN GIỮA NỘI DUNG LỖI (Quan trọng nhất) */
+.error-section {
+    display: flex;
+    flex-direction: column; /* Xếp các thành phần theo chiều dọc */
+    align-items: center;    /* Căn giữa theo chiều ngang */
+    justify-content: center; /* Căn giữa theo chiều dọc */
+    text-align: center;
+    padding-bottom: 140px;
+}
+
+.error-section h1 {
+    font-size: 110px;       /* Phóng to chữ 404 */
+    font-weight: 500;
+    margin-bottom: 24px;
+    color: #000;
+}
+
+.error-section p {
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+/* 5. Nút bấm quay lại trang chủ */
+.btn-home {
+    background-color: #DB4444; /* Màu đỏ đặc trưng Exclusive */
+    color: white;
+    padding: 16px 48px;
+    text-decoration: none;   /* Bỏ gạch chân của thẻ a */
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.btn-home:hover {
+    background-color: #E07575; /* Hiệu ứng sáng lên khi di chuột */
+}

@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
+    padding: 20px;
+    margin: auto;
+    /* border-radius: 20px; */
+    /* box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); */
+}
+
+.breadcrumb {
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.breadcrumb a {
+    font-size: 12px;
+    text-decoration: none;
+    color: #666;
+
+}
+
+.breadcrumb a:hover {
+    color: #000;
+}
+
+
+.breadcrumb b {
+    font-size: 15px;
+    color: #000;
+}
+
+.story {
+    display: flex;
+    align-items: stretch;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.story-text {
+    flex: 1;
+}
+
+.story-text h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.story-text p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.name {
+    text-transform: uppercase;
+    /* Bạn có thể thêm font-weight: bold; nếu muốn tên in đậm lên một chút cho nổi bật */
+    font-weight: 600; 
+    color: #000; /* Tùy chọn: làm chữ tối màu hơn một chút để nhấn mạnh */
+}
+
+/* --- SỬA LẠI ĐOẠN NÀY TRONG ABOUT.CSS --- */
+.story-image {
+    flex: 1;
+    position: relative;
+    /* BẮT BUỘC phải có min-height để khung không bị xẹp khi ảnh bị ẩn (display: none) */
+    min-height: 450px; 
+    width: 100%;
+    margin-top: 60px;
+    transition: all 1s ease;
+
+}
+
+.story-slide {
+    display: none; 
+    position: absolute; /* Xếp chồng các ảnh lên nhau */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Đảm bảo ảnh đầu tiên luôn hiện ra ngay cả khi JS chưa kịp chạy */
+.story-slide:first-child {
+    display: block;
+}
+
+.story-slide img {
+
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+/* Hiệu ứng Fade chuyển cảnh mượt mà */
+.fade-story {
+    animation-name: fadeStoryAnim;
+    animation-duration: 1.5s;
+}
+
+@keyframes fadeStoryAnim {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+.statistics, .services-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    flex: 1;
+    min-width: 260px;
+    text-align: center;
+    padding: 30px 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 15px;
+    background: #fafafa;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    background: #c9d6ff;
+}
+
+.icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background: #dcdcdc; /* Vòng tròn ngoài */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    transition: all 0.3s ease;
+}
+
+.icon-inner {
+    width: 60px;
+    height: 60px;
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng đảo màu icon khi hover */
+.stat-card:hover .icon-wrapper {
+    background: #dcdcdc;
+}
+
+.stat-card:hover .icon-inner {
+    background: #fff;
+    color: #000;
+}
+
+.stat-card h3 {
+    font-size: 26px;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 15px;
+    color: #666;
+}
+
+/* ================== TEAM SECTION ================== */
+.team {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    flex: 1;
+    min-width: 220px;
+    text-align: center;
+    position: relative;
+}
+
+.image-member {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.image-member img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 3/4; /* Cố định tỷ lệ ảnh chân dung */
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Lớp phủ mờ hiển thị tên & chức vụ khi hover */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+
+.team-member:hover .image-member img {
+    transform: scale(1.1); /* Zoom nhẹ ảnh */
+}
+
+.team-member:hover .overlay {
+    opacity: 1;
+}
+
+.overlay .text {
+    color: #fff;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.team-member:hover .overlay .text {
+    transform: translateY(0);
+}
+
+.overlay .text h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.overlay .text p {
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* Mạng xã hội */
+.socials-icon {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.socials-icon a {
+    text-decoration: none;
+    color: #333;
+    font-size: 24px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.socials-icon a:hover {
+    color: #007bff; /* Màu xanh khi hover, bạn có thể đổi tùy ý */
+    transform: translateY(-3px);
+}
+
+@media (max-width: 991px) {
+    .story {
+        flex-direction: column;
+    }
+    
+    .story-image img {
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    .statistics, .team, .services-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat-card, .team-member {
+        width: 100%;
+        max-width: 400px;
+    }
+}

@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+main{
+    width: 100vw;
+    display: flex;
+}
+.nav_bar{
+    width: 20vw;
+    background: azure;
+}
+.main{
+    width: 80vw;
+    background: beige;
+}

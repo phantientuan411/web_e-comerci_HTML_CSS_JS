@@ -1,0 +1,139 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+}
+
+main {
+    margin: 5vh auto;
+    width: 80%;
+    max-width: 1000px;
+    display: flex;
+    background: transparent;
+}
+
+.user_left {
+    width: 30%;
+    background: #ffffff;
+    padding-top: 30px;
+    border-radius: 16px 0 0 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user_left img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #e2e8f0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.user_left img:hover {
+    transform: scale(1.05);
+}
+
+.User_btn {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.User_btn button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: none;
+    background: #ffffff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    text-align: left;
+    padding-left: 4vw;
+}
+
+.User_btn button:hover {
+    background: #e0e7ff;
+    color: #4f46e5;
+}
+
+.user_main {
+    width: 70%;
+    background: #ffffff;
+    padding: 40px;
+    border-radius:0 16px 16px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.name{
+    text-align: center;
+}
+main input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.User_input {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.User_input div {
+    flex: 1;
+}
+
+.Uppdate_btn {
+    background-color: #4f46e5;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cancel_btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: white;
+    cursor: pointer;
+}
+.order_box{
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.order_header{
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.order_item{
+  display: flex;
+  justify-content: space-between;
+  margin: 3px 0;
+}
+
+.order_customer{
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.order_footer{
+  margin-top: 10px;
+  font-size: 14px;
+}

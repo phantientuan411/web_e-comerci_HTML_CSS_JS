@@ -1,0 +1,447 @@
+const head = `
+<div class="sell_off">
+                <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</p>
+                <h4><a href="">Shop Now</a></h4>
+            </div>
+
+            <div class="nav">
+                <div class="nav_child">
+
+                    <h1>Exclusive</h1>
+
+                    <div class="a_card">
+                        <a id="Home" onclick="gotoHome()">Home</a>
+                        <a id="Contact" onclick="gotocontact()">Contact</a>
+                        <a id="about" onclick="gotoAbout()">About</a>
+                        <a class="auth" id="auth">Sign Up</a>
+                    </div>
+                    <div class="user-btn">
+                        <form class="search" id="searchForm">
+                            <input type="text" class="input_search" placeholder="Tìm kiếm" id="searchInput">
+                            <button class="input_btn"><i class="fa fa-search"></i></button>
+                        </form>
+
+                        <div class="user-btn1">
+                            <button>
+                                <i class="fa fa-heart" style="font-size: 20px;"></i>
+                            </button>
+                            <button onclick="gotocart()">
+                                <i class="fa fa-shopping-cart" style="font-size: 20px;"></i>
+                            </button>
+                            <button onclick='gotoUser()'>
+                                <i class="fa fa-user-circle-o" style="font-size: 20px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>`
+
+document.getElementById("head").innerHTML = head;
+const slideData = [
+    "https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:100/plain/https://dashboard.cellphones.com.vn/storage/iphone-17-256gb-tet-home26.jpg",
+    "https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:100/plain/https://dashboard.cellphones.com.vn/storage/amazfit-max-home.png",
+    "https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:100/plain/https://dashboard.cellphones.com.vn/storage/may-tinh-de-ban-1.png",
+    "https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:100/plain/https://dashboard.cellphones.com.vn/storage/iphone-17-256gb-tet-home26.jpg"
+
+]
+
+const items = [
+    // Gamepad
+    {
+        anh_main: "https://png.pngtree.com/png-vector/20240830/ourlarge/pngtree-orange-gaming-controller-resting-on-a-transparent-background-showcasing-its-vibrant-png-image_13679959.png",
+        name: "HAVIT HV-G92 Gamepad",
+        price: 120,
+        sale: 0.2,
+        star: 4,
+        color: ['red', 'black', 'white'],
+        version: ['standard', 'pro'],
+        connect: ['wired', 'bluetooth']
+    },
+
+    // Tai nghe
+    {
+        anh_main: "../anh/anhAirPod2.jpg",
+        anh1: "../anh/anhAirPod2_3.jpg",
+        anh2: "../anh/anhAirPod2_2.jpg",
+        name: "AirPods Pro 2",
+        price: 250,
+        sale: 0.15,
+        star: 5,
+        color: ['white', 'black'],
+        version: ['lightning', 'type-c'],
+        feature: ['ANC', 'Transparency']
+    },
+
+    // Dien thoai
+    {
+        anh_main: "https://cdn.tgdd.vn/Products/Images/42/303825/iphone-15-pro-max-blue-1-750x500.jpg",
+        name: "iPhone 15 Pro Max",
+        price: 1200,
+        sale: 0.05,
+        star: 4.8,
+        color: ['black', 'white', 'blue', 'natural'],
+        storage: ['256GB', '512GB', '1TB'],
+        sim: ['1 SIM', '2 SIM']
+    },
+
+    // Laptop
+    {
+        anh_main: "https://cdn.tgdd.vn/Products/Images/44/303123/macbook-air-m2-2022-750x500.jpg",
+        name: "MacBook Air M2",
+        price: 999,
+        sale: 0.1,
+        star: 4.7,
+        color: ['silver', 'midnight', 'starlight'],
+        ram: ['8GB', '16GB'],
+        storage: ['256GB', '512GB'],
+        chip: ['M2']
+    },
+
+    // Ban phim
+    {
+        anh_main: "https://cdn.tgdd.vn/Products/Images/4547/307080/ban-phim-co-rgb-750x500.jpg",
+        name: "Mechanical Keyboard RGB",
+        price: 150,
+        sale: 0.2,
+        star: 4.6,
+        color: ['black', 'white'],
+        switch: ['blue', 'red', 'brown'],
+        layout: ['TKL', 'Fullsize']
+    },
+
+    // Chuot
+    {
+        anh_main: "https://cdn.tgdd.vn/Products/Images/86/302512/chuot-gaming-rgb-750x500.jpg",
+        name: "Gaming Mouse",
+        price: 60,
+        sale: 0.15,
+        star: 4.4,
+        color: ['black', 'white'],
+        dpi: ['800', '1600', '3200', '6400'],
+        connect: ['wired', 'wireless']
+    },
+
+    // Man hinh
+    {
+        anh_main: "https://cdn.tgdd.vn/Products/Images/86/302800/man-hinh-lg-27-inch-750x500.jpg",
+        name: "LG 27\" Monitor",
+        price: 300,
+        sale: 0.12,
+        star: 4.5,
+        size: ['24 inch', '27 inch', '32 inch'],
+        refreshRate: ['60Hz', '144Hz', '240Hz'],
+        panel: ['IPS', 'VA']
+    },
+
+    // Smartwatch
+    {
+        anh_main: "https://cdn.tgdd.vn/Products/Images/7077/299123/apple-watch-series-9-750x500.jpg",
+        name: "Apple Watch Series 9",
+        price: 400,
+        sale: 0.1,
+        star: 4.7,
+        color: ['black', 'white', 'pink'],
+        size: ['41mm', '45mm'],
+        connect: ['GPS', 'GPS + Cellular']
+    },
+
+    // Loa bluetooth
+    {
+        anh_main: "https://cdn.tgdd.vn/Products/Images/2162/302123/loa-jbl-750x500.jpg",
+        name: "JBL Bluetooth Speaker",
+        price: 180,
+        sale: 0.2,
+        star: 4.6,
+        color: ['black', 'blue', 'red'],
+        battery: ['10h', '15h', '20h'],
+        waterproof: ['IPX5', 'IPX7']
+    },
+    {
+        anh_main: "https://cdn.tgdd.vn/Products/Images/2162/302123/loa-jbl-750x500.jpg",
+        name: "JBL Bluetooth Speaker",
+        price: 180,
+        sale: 0.2,
+        star: 4.6,
+        color: ['black', 'blue', 'red'],
+        battery: ['10h', '15h', '20h'],
+        waterproof: ['IPX5', 'IPX7']
+    }
+];
+const slidesContainer = document.getElementById("slides");
+const sliderWrapper = slidesContainer?.parentElement;
+
+if (slidesContainer && sliderWrapper) {
+    const total = slideData.length;
+    let index = 1;
+    let isAnimating = false;
+
+    function buildSlides() {
+        const w = sliderWrapper.offsetWidth;
+
+        const allSrcs = [
+            slideData[total - 1],
+            ...slideData,
+            slideData[0]
+        ];
+
+        slidesContainer.innerHTML = allSrcs.map(src => `
+            <div style="width:${w}px; height:100%; flex-shrink:0;">
+                <img src="${src}">
+            </div>
+        `).join("");
+
+        slidesContainer.style.transition = "none";
+        slidesContainer.style.transform = `translateX(-${index * w}px)`;
+    }
+
+    function goTo(i, animate = true) {
+        if (isAnimating) return;
+        isAnimating = true;
+        index = i;
+
+        const w = sliderWrapper.offsetWidth;
+        slidesContainer.style.transition = animate ? "transform 0.5s ease" : "none";
+        slidesContainer.style.transform = `translateX(-${index * w}px)`;
+
+        if (!animate) {
+            setTimeout(() => { isAnimating = false; }, 20);
+        }
+    }
+
+    slidesContainer.addEventListener("transitionend", (e) => {
+        if (e.propertyName !== "transform") return;
+
+        const w = sliderWrapper.offsetWidth;
+
+        if (index === 0) {
+            slidesContainer.style.transition = "none";
+            index = total;
+            slidesContainer.style.transform = `translateX(-${index * w}px)`;
+        } else if (index === total + 1) {
+            slidesContainer.style.transition = "none";
+            index = 1;
+            slidesContainer.style.transform = `translateX(-${index * w}px)`;
+        }
+
+        isAnimating = false;
+    });
+
+    window.next = function () { goTo(index + 1); };
+    window.prev = function () { goTo(index - 1); };
+
+    window.addEventListener("resize", () => {
+        isAnimating = false;
+        buildSlides();
+    });
+
+    setInterval(() => window.next(), 4000);
+
+    buildSlides();
+}
+
+const searchForm = document.getElementById("searchForm")
+
+if (searchForm) {
+    searchForm.addEventListener("submit", e => {
+        e.preventDefault()
+        const value = document.getElementById("searchInput").value.trim()
+        console.log(value)
+    })
+}
+const auth = document.getElementById("auth")
+const alreadyLog = localStorage.getItem("alreadyLogin")
+if (alreadyLog === "1") {
+    auth.innerText = "Logout";
+    auth.onclick = () => {
+        localStorage.removeItem("alreadyLogin");
+        location.reload();
+        localStorage.setItem("alreadyLogin", "0");
+    }
+}
+else {
+    auth.innerText = "Login";
+    auth.onclick = () => {
+        window.location.href = "../THTrueMilk/login_registration.html"
+    }
+}
+function updateClock() {
+    const hourEl = document.getElementById("hour");
+    if (!hourEl) return; // ← thêm dòng này, nếu không có thì thoát luôn
+
+    const now = new Date();
+    const tomorrow = new Date();
+    tomorrow.setHours(24, 0, 0, 0);
+
+    const diff = tomorrow - now;
+
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("hour").innerText = String(hours).padStart(2, "0");
+    document.getElementById("min").innerText = String(minutes).padStart(2, "0");
+    document.getElementById("second").innerText = String(seconds).padStart(2, "0");
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+const productList = document.getElementById("productList")
+
+if (productList) {
+
+    productList.innerHTML = items.map((item, index) => {
+
+        const finalPrice = item.price * (1 - item.sale)
+        return `
+<div class="items" onClick="lastItemSelect(${index})">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <span class="sale">-${item.sale * 100}%</span>                    
+                <div class="heart-eye" onClick="handleHeart(event,${index})">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onClick="AddCart(event,${index})">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img" >
+            <img src="${item.anh_main}"> 
+        </div>
+        
+    </div>
+
+    <p>${item.name}</p>
+
+    <div class="item_price">
+        <span>$${finalPrice.toFixed(2)}</span>
+        <span class="price">$${item.price}</span>
+    </div>
+
+</div>
+`
+
+    }).join("")
+
+}
+
+function lastItemSelect(index) {
+    const product = items[index];
+    localStorage.setItem("lastItemSelected", JSON.stringify(product));
+    window.location.href = "../DoQuyet/product.html";
+}
+function AddCart(event, index){
+    event.stopPropagation();
+
+    const cartItem = items[index];
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existing = cart.find(item => item.name === cartItem.name);
+
+    if (existing) {
+        existing.quantity = (existing.quantity || 1) + 1;
+    } else {
+        cartItem.quantity = 1;
+        cart.push(cartItem);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+function gotoAbout() {
+    window.location.href = "../THTrueMilk/about.html";
+};
+function gotocontact() {
+    window.location.href = "../DoQuyet/contact.html";
+}
+function gotoHome(){
+    window.location.href="../home/home.html";
+
+}
+
+function handleHeart(event, index) {
+    event.stopPropagation();
+    const heartItem = items[index];
+    const heart = JSON.parse(localStorage.getItem("heart")) || [];
+    const existing = heart.find(item => item.name === heartItem.name);
+
+    if (existing) {
+        existing.quantity = (existing.quantity || 1) + 1;
+    } else {
+        heartItem.quantity = 1;
+        heart.push(heartItem);
+    }
+
+    localStorage.setItem("heart", JSON.stringify(heart));
+}
+
+const foot=`
+
+
+        <div class="col">
+            <h3>Exclusive</h3>
+            <h5>Subscribe</h5>
+            <p>Get 10% off your first order</p>
+
+            <form class="emailInput" id="emailForm">
+                <input type="text" placeholder="Enter your email" id="emailInput">
+                <button><i class="fa fa-paper-plane-o"></i></button>
+            </form>
+
+        </div>
+        <div class="col">
+            <h4>Support</h4>
+            <p class="p-font1">111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</p>
+            <p class="p-font1">exclusive@gmail.com</p>
+            <p class="p-font1">+88015-88888-9999</p>
+        </div>
+        <div class="col">
+            <h4>Account</h4>
+            <a href="">My Account</a>
+            <div style="display: flex;">
+                <a href="">Login</a>
+                <p>/</p><a href="">Register</a>
+            </div>
+            <a href="">Cart</a>
+            <a href="">Wishlist</a>
+            <a href="">Shop</a>
+        </div>
+        <div class="col">
+            <h4>Quick link</h4>
+            <p class="p-font1">Privacy Policy</p>
+            <p class="p-font1">Terms Of Use</p>
+            <p class="p-font1">FAQ</p>
+            <p class="p-font1">Contact</p>
+        </div>
+
+    
+`
+document.getElementById("foot").innerHTML=foot;
+
+
+
+function gotoUser(){
+    if(alreadyLog !== "1"){
+        confirm("Hãy đăng nhập trước.")
+
+    }
+    else{
+        window.location.href='../user/user.html'
+    }
+}
+
+function gotocart(){
+    if(alreadyLog !== "1"){
+        confirm("Hãy đăng nhập trước.")
+
+    }
+    else{
+        window.location.href='../Tho/cart.html'
+    }
+}

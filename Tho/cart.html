@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../home/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cart.css">
+    <title>Cart</title>
+</head>
+
+<body>
+    <header id="head"></header>
+    <div class="container">
+        <a href="../home/home.html" class="Home">Home</a>
+        <span>/</span>
+        <div class="Cart">
+            <span>Cart</span>
+        </div>
+    </div>
+    <div class="cart-head">
+        <div class="product">Product</div>
+        <div class="price">Price</div>
+        <div class="quantity">Quantity</div>
+        <div class="subtotal">Subtotal</div>
+    </div>
+    <div class="cart-product" id="item">
+    </div>
+    <div class="cart-button">
+        <a href="/" class="shop">Return to shop</a>
+        <a href="cart.html" class="update">Update cart</a>
+    </div>
+    <div class="cart-foot">
+        <div class="coupon">
+            <div class="coupon-code">
+                <input type="text" id="coupon-input" placeholder="Coupon Code">
+                <p id="coupon-message" class="message"></p>
+            </div>
+            <div class="apply-coupon">
+                <button onclick="checkCoupon()">Apply Coupon</button>
+            </div>
+        </div>
+        <div class="cart-total">
+            <h3>Cart Total</h3>
+            <div class="row1">
+                <span>Subtotal: </span>
+                <span id="subtotal"></span>
+            </div>
+            <hr>
+            <div class="row2">
+                <span>Ship: </span>
+                <span>Free</span>
+            </div>
+            <hr>
+            <div class="row3" id="couponrow">
+                <span>Discount: </span>
+                <span id="coupontotal"></span>
+            </div>
+            <hr id="couponhr" class="hrcp">
+            <div class="row4">
+                <span>Total: </span>
+                <span id="total"></span>
+            </div>
+            <div class="gotocheckout">
+                <button onclick="Gotocheckout()">Process to checkout</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer" id="foot">
+
+        
+    </div>
+    <script src="../home/home.js"></script>
+    <script src="cart.js"></script>
+</body>
+
+</html>

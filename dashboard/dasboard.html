@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f0f4ff; }
+
+    .sidebar {
+      position: fixed; left: 0; top: 0; width: 220px; height: 100vh;
+      background: #1a3a6e; display: flex; flex-direction: column; z-index: 10;
+    }
+    .logo {
+      padding: 28px 24px 24px; font-size: 18px; font-weight: 500; color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.5px;
+    }
+    .logo span { color: #7eb8ff; }
+    .nav-group { padding: 16px 0; flex: 1; }
+    .nav-label {
+      font-size: 10px; color: rgba(255,255,255,0.4);
+      text-transform: uppercase; letter-spacing: 1.5px;
+      padding: 0 24px; margin-bottom: 8px;
+    }
+    .nav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 24px; cursor: pointer; transition: all 0.15s;
+      font-size: 13.5px; color: rgba(255,255,255,0.65);
+      border-left: 3px solid transparent;
+    }
+    .nav-item:hover { background: rgba(255,255,255,0.07); color: #fff; }
+    .nav-item.active {
+      background: rgba(126,184,255,0.15); color: #7eb8ff;
+      border-left: 3px solid #7eb8ff;
+    }
+    .nav-icon { width: 16px; height: 16px; }
+    .sidebar-footer {
+      padding: 16px 24px; border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 12px; color: rgba(255,255,255,0.4);
+    }
+
+    .content { margin-left: 220px; padding: 28px 32px; }
+
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 28px;
+    }
+    .topbar-left h1 { font-size: 20px; font-weight: 500; color: #1a3a6e; }
+    .topbar-left p { font-size: 13px; color: #888; margin-top: 2px; }
+    .topbar-right { display: flex; gap: 10px; align-items: center; }
+
+    .btn {
+      padding: 8px 18px; border-radius: 8px; font-size: 13px;
+      cursor: pointer; border: none; font-family: inherit; transition: all 0.15s;
+    }
+    .btn-outline {
+      background: #fff; border: 1px solid #d0d9f0; color: #1a3a6e;
+    }
+    .btn-outline:hover { background: #eef2ff; border-color: #7eb8ff; }
+    .btn-primary { background: #1a3a6e; color: #fff; }
+    .btn-primary:hover { background: #0f2655; }
+    .btn-danger { background: #fff; border: 1px solid #fcc; color: #c33; }
+    .btn-danger:hover { background: #fff5f5; }
+
+    .cards {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 16px; margin-bottom: 24px;
+    }
+    .card {
+      background: #fff; border-radius: 14px; padding: 20px 22px;
+      border: 1px solid #e8edf8;
+    }
+    .card-label {
+      font-size: 12px; color: #888; margin-bottom: 8px;
+      text-transform: uppercase; letter-spacing: 0.8px;
+    }
+    .card-value { font-size: 26px; font-weight: 500; color: #1a3a6e; }
+    .card-change { font-size: 12px; margin-top: 6px; }
+    .up { color: #2a7d4f; } .down { color: #c33; }
+    .card-accent  { border-top: 3px solid #1a3a6e; }
+    .card-accent2 { border-top: 3px solid #7eb8ff; }
+    .card-accent3 { border-top: 3px solid #3cb878; }
+    .card-accent4 { border-top: 3px solid #f0a500; }
+
+    .charts-row {
+      display: grid; grid-template-columns: 2fr 1fr;
+      gap: 16px; margin-bottom: 24px;
+    }
+    .chart-box {
+      background: #fff; border-radius: 14px; padding: 22px 24px;
+      border: 1px solid #e8edf8;
+    }
+    .chart-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .chart-title { font-size: 14px; font-weight: 500; color: #1a3a6e; }
+    .chart-sub { font-size: 12px; color: #aaa; margin-top: 2px; }
+
+    .period-btns { display: flex; gap: 4px; }
+    .pbtn {
+      padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer;
+      border: 1px solid #e0e7f0; background: #fff; color: #888; font-family: inherit;
+      transition: all 0.12s;
+    }
+    .pbtn.active { background: #1a3a6e; color: #fff; border-color: #1a3a6e; }
+    .pbtn:hover:not(.active) { background: #f0f4ff; border-color: #7eb8ff; color: #1a3a6e; }
+
+    .charts-row2 {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+    }
+
+    canvas { display: block; width: 100% !important; }
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="logo">Dash<span>Board</span></div>
+  <div class="nav-group">
+    <div class="nav-label">Main</div>
+    <div class="nav-item active">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="#7eb8ff">
+        <rect x="1" y="1" width="6" height="6" rx="1.5"/>
+        <rect x="9" y="1" width="6" height="6" rx="1.5"/>
+        <rect x="1" y="9" width="6" height="6" rx="1.5"/>
+        <rect x="9" y="9" width="6" height="6" rx="1.5"/>
+      </svg>
+      Overview
+    </div>
+    <div class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="rgba(255,255,255,0.65)">
+        <path d="M2 12h2v-5H2v5zm4 0h2V4H6v8zm4 0h2V7h-2v5zm4 0h2V2h-2v10z"/>
+      </svg>
+      Analytics
+    </div>
+    <div class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="1.5">
+        <circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/>
+      </svg>
+      Reports
+    </div>
+    <div class="nav-label" style="margin-top:16px;">Manage</div>
+    <div class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="1.5">
+        <circle cx="6" cy="5" r="3"/>
+        <path d="M1 14c0-3 2.2-5 5-5s5 2 5 5"/>
+        <circle cx="12.5" cy="5" r="2"/>
+        <path d="M12.5 10c1.5 0 3 1 3 4"/>
+      </svg>
+      Users
+    </div>
+    <div class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="1.5">
+        <rect x="2" y="2" width="12" height="12" rx="2"/>
+        <path d="M5 8h6M5 5.5h6M5 10.5h4"/>
+      </svg>
+      Orders
+    </div>
+  </div>
+  <div class="sidebar-footer">v2.0.1 — Admin</div>
+</div>
+
+<div class="content">
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Overview</h1>
+      <p>Tháng 4, 2026 — dữ liệu cập nhật hôm nay</p>
+    </div>
+    <div class="topbar-right">
+      <button class="btn btn-danger" onclick="alert('Xuất báo cáo PDF!')">Xuất báo cáo</button>
+      <button class="btn btn-outline">Lọc dữ liệu</button>
+      <button class="btn btn-primary">+ Thêm mới</button>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card card-accent">
+      <div class="card-label">Doanh thu</div>
+      <div class="card-value">$84,230</div>
+      <div class="card-change up">▲ 12.4% so với tháng trước</div>
+    </div>
+    <div class="card card-accent2">
+      <div class="card-label">Đơn hàng</div>
+      <div class="card-value">1,847</div>
+      <div class="card-change up">▲ 8.1% so với tháng trước</div>
+    </div>
+    <div class="card card-accent3">
+      <div class="card-label">Khách hàng mới</div>
+      <div class="card-value">342</div>
+      <div class="card-change down">▼ 3.2% so với tháng trước</div>
+    </div>
+    <div class="card card-accent4">
+      <div class="card-label">Tỷ lệ chuyển đổi</div>
+      <div class="card-value">4.7%</div>
+      <div class="card-change up">▲ 0.6% so với tháng trước</div>
+    </div>
+  </div>
+
+  <div class="charts-row">
+    <div class="chart-box">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Doanh thu theo tháng</div>
+          <div class="chart-sub">So sánh năm 2025 vs 2026</div>
+        </div>
+        <div class="period-btns">
+          <button class="pbtn active" onclick="setPeriod(this,'6T')">6T</button>
+          <button class="pbtn" onclick="setPeriod(this,'1N')">1N</button>
+          <button class="pbtn" onclick="setPeriod(this,'TT')">Tất cả</button>
+        </div>
+      </div>
+      <canvas id="lineChart" height="180"></canvas>
+    </div>
+    <div class="chart-box">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Danh mục sản phẩm</div>
+          <div class="chart-sub">Phân bổ doanh thu</div>
+        </div>
+      </div>
+      <canvas id="donutChart" height="180"></canvas>
+    </div>
+  </div>
+
+  <div class="charts-row2">
+    <div class="chart-box">
+      <div class="chart-header">
+        <div class="chart-title">Đơn hàng theo ngày</div>
+      </div>
+      <canvas id="barChart" height="160"></canvas>
+    </div>
+    <div class="chart-box">
+      <div class="chart-header">
+        <div class="chart-title">Kênh bán hàng</div>
+      </div>
+      <canvas id="radarChart" height="160"></canvas>
+    </div>
+    <div class="chart-box">
+      <div class="chart-header">
+        <div class="chart-title">Trạng thái đơn hàng</div>
+      </div>
+      <canvas id="pieChart" height="160"></canvas>
+    </div>
+  </div>
+</div>
+
+<script>
+  Chart.defaults.font.family = "'Segoe UI', sans-serif";
+  Chart.defaults.color = '#888';
+
+  const BLUE  = '#1a3a6e';
+  const BLUE2 = '#7eb8ff';
+  const BLUE3 = '#b8d6ff';
+  const GRAY  = '#e8edf8';
+
+  function makeGrad(ctx, c1, c2) {
+    const g = ctx.createLinearGradient(0, 0, 0, 200);
+    g.addColorStop(0, c1); g.addColorStop(1, c2); return g;
+  }
+
+  const lineCtx = document.getElementById('lineChart').getContext('2d');
+  const lineChart = new Chart(lineCtx, {
+    type: 'line',
+    data: {
+      labels: ['T11','T12','T1','T2','T3','T4'],
+      datasets: [
+        {
+          label: '2026', data: [52000,61000,58000,72000,78000,84000],
+          borderColor: BLUE,
+          backgroundColor: makeGrad(lineCtx,'rgba(26,58,110,0.18)','rgba(26,58,110,0)'),
+          fill: true, tension: 0.4, pointBackgroundColor: BLUE, pointRadius: 4, borderWidth: 2.5
+        },
+        {
+          label: '2025', data: [44000,50000,47000,60000,65000,70000],
+          borderColor: BLUE2,
+          backgroundColor: makeGrad(lineCtx,'rgba(126,184,255,0.12)','rgba(126,184,255,0)'),
+          fill: true, tension: 0.4, pointBackgroundColor: BLUE2, pointRadius: 4, borderWidth: 2,
+          borderDash: [5,3]
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 12 } } } },
+      scales: {
+        y: { grid: { color: '#f0f4ff' }, ticks: { callback: v => '$' + (v/1000).toFixed(0) + 'k' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('donutChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Điện tử','Thời trang','Gia dụng','Khác'],
+      datasets: [{ data: [38,27,22,13], backgroundColor: [BLUE,BLUE2,BLUE3,GRAY], borderWidth: 2, borderColor: '#fff' }]
+    },
+    options: {
+      responsive: true, cutout: '65%',
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 }, padding: 10 } } }
+    }
+  });
+
+  new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+      labels: ['T2','T3','T4','T5','T6','T7','CN'],
+      datasets: [{
+        label: 'Đơn hàng', data: [210,185,260,240,310,290,180],
+        backgroundColor: [BLUE,BLUE2,BLUE,BLUE,BLUE,BLUE2,BLUE3],
+        borderRadius: 6, borderSkipped: false
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { y: { grid: { color: '#f0f4ff' } }, x: { grid: { display: false } } }
+    }
+  });
+
+  new Chart(document.getElementById('radarChart'), {
+    type: 'radar',
+    data: {
+      labels: ['Website','Mobile','Mạng XH','Email','Đại lý'],
+      datasets: [{
+        label: 'Hiệu suất', data: [85,72,60,55,40],
+        borderColor: BLUE, backgroundColor: 'rgba(26,58,110,0.15)',
+        pointBackgroundColor: BLUE, borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { r: { grid: { color: '#e8edf8' }, pointLabels: { font: { size: 11 } } } }
+    }
+  });
+
+  new Chart(document.getElementById('pieChart'), {
+    type: 'pie',
+    data: {
+      labels: ['Hoàn thành','Đang xử lý','Đã huỷ'],
+      datasets: [{ data: [62,28,10], backgroundColor: [BLUE,BLUE2,BLUE3], borderWidth: 2, borderColor: '#fff' }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 }, padding: 10 } } }
+    }
+  });
+
+  function setPeriod(el, p) {
+    document.querySelectorAll('.pbtn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    const sets = {
+      '6T': { labels: ['T11','T12','T1','T2','T3','T4'], d1: [52000,61000,58000,72000,78000,84000], d2: [44000,50000,47000,60000,65000,70000] },
+      '1N': { labels: ['T5','T6','T7','T8','T9','T10','T11','T12','T1','T2','T3','T4'], d1: [40000,45000,48000,55000,50000,58000,52000,61000,58000,72000,78000,84000], d2: [32000,38000,40000,46000,42000,50000,44000,50000,47000,60000,65000,70000] },
+      'TT': { labels: ['2024 Q1','Q2','Q3','Q4','2025 Q1','Q2','Q3','Q4','2026 Q1'], d1: [120000,135000,128000,150000,148000,162000,155000,175000,234000], d2: [100000,110000,118000,130000,135000,145000,140000,160000,205000] }
+    };
+    const s = sets[p];
+    lineChart.data.labels = s.labels;
+    lineChart.data.datasets[0].data = s.d1;
+    lineChart.data.datasets[1].data = s.d2;
+    lineChart.update();
+  }
+
+  document.querySelectorAll('.nav-item').forEach(el => {
+    el.onclick = () => {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      el.classList.add('active');
+    };
+  });
+</script>
+</body>
+</html>

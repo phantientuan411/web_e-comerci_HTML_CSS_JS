@@ -1,0 +1,536 @@
+/* 1. Thiết lập chung */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    max-width: 1170px;
+    margin: 5vh auto;
+    padding: 0 15px;
+}
+
+/* 2. Breadcrumb */
+.breadcrumb {
+    margin: 80px 0;
+    font-size: 14px;
+    color: #808080;
+}
+
+.breadcrumb span {
+    color: #000;
+    font-weight: 500;
+}
+
+/* 3. Bố cục chính (Gallery + Info) */
+.product-main {
+    display: flex;
+    gap: 70px;
+    margin-bottom: 80px;
+}
+
+/* --- PHẦN GALLERY: HÀNG DỌC & VỪA KHÍT --- */
+.product-gallery {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    flex: 1.5;
+}
+
+.thumbnails {
+    display: flex;
+    flex-direction: column; /* Xếp dọc ảnh nhỏ */
+    gap: 16px;
+}
+
+.thumbnails img {
+    width: 120px;
+    height: 115px;
+    background-color: #F5F5F5;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.thumbnails img:hover,
+.thumbnails img.active {
+    border-color: #DB4444;
+}
+
+.thumbnails img.active {
+    box-shadow: 0 10px 30px rgba(219, 68, 68, 0.18);
+}
+
+/* Khung chứa ảnh to chính */
+.main-image {
+    width: 500px;
+    height: 508px; /* Tỉ lệ gần vuông cho đẹp */
+    background-color: #F5F5F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.main-image img {
+    width: 90%; /* Ảnh chiếm 90% khung xám để thoáng mắt */
+    height: 90%;
+    object-fit: contain;
+    mix-blend-mode: multiply; /* Xóa nền trắng ảnh to */
+}
+
+/* 4. Thông tin sản phẩm */
+.product-info {
+    flex: 1;
+}
+
+.product-info h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.rating {
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.stock {
+    color: #00FF66;
+    margin-left: 8px;
+}
+
+.price_p {
+    font-size: 24px;
+    font-weight: 500;
+    color: red;
+    margin-bottom: 24px;
+}
+
+.desc {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #808080;
+    margin-bottom: 24px;
+    opacity: 0.5;
+}
+
+/* 5. Options (Màu sắc & Kích thước) */
+.options > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #000;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.circle:hover {
+    transform: scale(1.05);
+}
+
+.circle.active {
+    border-color: #DB4444;
+    box-shadow: 0 0 0 4px rgba(219, 68, 68, 0.12);
+    transform: scale(1.1);
+}
+
+.blue { background-color: #A0BCE0; }
+.red { background-color: #E07575; }
+
+.size-box { 
+    width: 32px;
+    height: 32px;
+    border: 1px solid #808080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    user-select: none;
+}
+
+.size-box.active {
+    background-color: #DB4444;
+    color: white;
+    border-color: #DB4444;
+}
+
+/* 6. Mua hàng & Số lượng */
+.buy-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.quantity {
+    display: flex;
+    border: 1px solid #808080;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.quantity button {
+    padding: 8px 15px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.2s;
+}
+
+.quantity button:hover {
+    background-color: #DB4444;
+    color: white;
+}
+
+.quantity input {
+    width: 50px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #808080;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.btn-buy {
+    background-color: #DB4444;
+    color: white;
+    border: none;
+    padding: 10px 48px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-buy:hover {
+    background-color: #E07575;
+    transform: scale(1.02);
+}
+/* Khung bao quanh 2 mục */
+.services-box {
+    border: 1px solid #808080; /* Đường viền xám */
+    border-radius: 4px;        /* Bo góc nhẹ */
+    margin-top: 40px;          /* Khoảng cách với nút bấm bên trên */
+    max-width: 400px;          /* Giới hạn độ rộng của hộp */
+}
+
+/* Từng dòng dịch vụ */
+.service-item {
+    display: flex;             /* Icon và Chữ nằm ngang */
+    align-items: center;       /* Căn giữa theo chiều dọc */
+    padding: 20px 24px;        /* Khoảng cách đệm bên trong */
+    gap: 16px;                 /* Khoảng cách giữa icon và chữ */
+}
+
+/* Đường kẻ phân chia ở giữa 2 dòng */
+.service-item:first-child {
+    border-bottom: 1px solid #808080;
+}
+
+/* Icon (Emoji hoặc FontAwesome) */
+.icon {
+    font-size: 30px;
+}
+
+/* Định dạng chữ */
+.text h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.text p {
+    font-size: 12px;
+    color: #000;
+}
+
+.text a {
+    color: #000;
+    text-decoration: underline; /* Gạch chân link theo mẫu */
+}
+
+/* 8. Related Items */
+/* 1. Tiêu đề Related Item */
+.related-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 80px 0 40px 0;
+}
+
+.red-bar {
+    width: 20px;
+    height: 40px;
+    background-color: #DB4444;
+    border-radius: 4px;
+}
+
+.related-header h3 {
+    color: #DB4444;
+    font-weight: 600;
+}
+
+/* 2. Lưới sản phẩm (4 cột) */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* 3. Chi tiết ô sản phẩm */
+.image-box {
+    position: relative; /* Làm mỏ neo cho các nút icon và tag giảm giá */
+    background-color: #F5F5F5;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    overflow: hidden; /* Cắt phần nút Add to cart khi nó chưa hiện lên */
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Tag giảm giá đỏ */
+.discount-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: #DB4444;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* Icon Tim và Mắt */
+.card-icons {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10;
+}
+
+.card-icons i,
+.card-icons svg {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+    font-size: 16px;
+    color: #333;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    line-height: 1;
+}
+
+.card-icons i:hover,
+.card-icons svg:hover {
+    background-color: #DB4444;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Nút Add To Cart ẩn bên dưới */
+.add-to-cart {
+    position: absolute;
+    bottom: -50px; /* Đẩy nó xuống dưới cùng, bị ẩn bởi overflow:hidden */
+    width: 100%;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 0;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Khung chứa ảnh */
+.image-box {
+    position: relative; /* Làm điểm tựa cho các icon */
+    background-color: #F5F5F5;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Nhóm 2 icon bên góc phải */
+.action-icons {
+    position: absolute;
+    top: 12px;     /* Cách mép trên 12px */
+    right: 12px;   /* Cách mép phải 12px */
+    display: flex;
+    flex-direction: column; /* Xếp dọc theo mẫu */
+    gap: 8px;      /* Khoảng cách giữa 2 nút */
+    z-index: 10;   /* Luôn nằm trên cùng */
+}
+
+/* Style cho từng nút tròn trắng */
+.icon-btn {
+    width: 34px;
+    height: 34px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50%; /* Tạo hình tròn */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+/* Hiệu ứng khi di chuột vào nút nhỏ */
+.icon-btn:hover {
+    background-color: #DB4444; /* Đổi sang màu đỏ Exclusive */
+    color: #fff;
+}
+
+/* HIỆU ỨNG: Di chuột vào thì nút hiện lên */
+.image-box:hover .add-to-cart {
+    bottom: 0;
+}
+
+/* 4. Thông tin chữ bên dưới ảnh */
+.product-info-details {
+    margin-top: 16px;
+}
+
+.product-name {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.current-price {
+    color: #DB4444;
+    font-weight: 600;
+    margin-right: 12px;
+}
+
+.old-price {
+    color: #808080;
+    text-decoration: line-through; /* Gạch ngang giá cũ */
+}
+
+/* Loại bỏ mũi tên input number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+}
+
+.close-modal:hover {
+    color: #DB4444;
+}
+
+.modal-body {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+#modal-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.modal-info h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.modal-price {
+    margin-bottom: 10px;
+}
+
+#modal-current-price {
+    color: #DB4444;
+    font-weight: 600;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+#modal-old-price {
+    color: #808080;
+    text-decoration: line-through;
+}
+
+.modal-rating {
+    margin-bottom: 15px;
+}
+
+#modal-description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+}
