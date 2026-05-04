@@ -397,16 +397,41 @@ function AddCart(event, index) {
 
     localStorage.setItem("cart", JSON.stringify(cart));
 }
+
 function getNavPath(targetPath) {
-    const path = window.location.pathname;
-    const pathParts = path.split('/').filter(p => p);
-    const webIndex = pathParts.findIndex(p => p === 'web');
+    const scriptSrc = document.currentScript?.src || 
+                     document.querySelector('script[src*="home.js"]')?.src || '';
     
-    if (webIndex === -1) return targetPath;
+    if (!scriptSrc) return './' + targetPath;
     
-    const depthFromWeb = pathParts.length - webIndex - 2;
-    const prefix = depthFromWeb > 0 ? '../'.repeat(depthFromWeb) : './';
-    return prefix + targetPath;
+    const url = new URL(scriptSrc, window.location.origin);
+    const scriptPath = url.pathname;
+    
+    const rootPath = scriptPath.substring(0, scriptPath.lastIndexOf('/'));
+    
+    const currentPath = window.location.pathname;
+    const currentDir = currentPath.substring(0, currentPath.lastIndexOf('/'));
+    
+    const rootParts = rootPath.split('/').filter(p => p);
+    const currentParts = currentDir.split('/').filter(p => p);
+    
+    let commonIndex = 0;
+    for (let i = 0; i < Math.min(rootParts.length, currentParts.length); i++) {
+        if (rootParts[i] === currentParts[i]) {
+            commonIndex = i + 1;
+        } else {
+            break;
+        }
+    }
+    
+    const levelsUp = currentParts.length - commonIndex;
+    let relativePath = '../'.repeat(levelsUp);
+    
+    for (let i = commonIndex; i < rootParts.length; i++) {
+        relativePath += rootParts[i] + '/';
+    }
+    
+    return (relativePath || './') + targetPath;
 }
 
 function gotoAbout() {
