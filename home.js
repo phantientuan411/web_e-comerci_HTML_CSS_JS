@@ -401,14 +401,18 @@ function AddCart(event, index) {
 function getNavPath(targetPath) {
     const currentPath = window.location.pathname;
     
-    // Kiểm tra xem có ở trong folder con không
-    // Nếu là thư mục gốc (index.html) -> không cần ../
-    // Nếu ở thư mục con (DoQuyet, Tho, user, v.v.) -> cần ../
-    const isInSubfolder = currentPath.includes('/DoQuyet/') || 
-                         currentPath.includes('/Tho/') ||
-                         currentPath.includes('/THTrueMilk/') || 
-                         currentPath.includes('/user/') ||
-                         currentPath.includes('/dashboard/');
+    // Tách path thành các phần
+    const segments = currentPath.split('/').filter(Boolean);
+    
+    // Độ sâu = số folder chứa file (không tính filename)
+    // Ví dụ:
+    // /repo/index.html -> segments = ['repo', 'index.html'] -> depth = 1 (gốc)
+    // /repo/DoQuyet/contact.html -> segments = ['repo', 'DoQuyet', 'contact.html'] -> depth = 2 (con)
+    const depth = segments.length - 1;
+    
+    // Nếu ở gốc (depth <= 1) -> dùng ./
+    // Nếu ở folder con (depth >= 2) -> dùng ../
+    const isInSubfolder = depth >= 2;
     
     return (isInSubfolder ? '../' : './') + targetPath;
 }
