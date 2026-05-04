@@ -399,39 +399,29 @@ function AddCart(event, index) {
 }
 
 function getNavPath(targetPath) {
-    const scriptSrc = document.currentScript?.src || 
-                     document.querySelector('script[src*="home.js"]')?.src || '';
-    
-    if (!scriptSrc) return './' + targetPath;
-    
-    const url = new URL(scriptSrc, window.location.origin);
-    const scriptPath = url.pathname;
-    
-    const rootPath = scriptPath.substring(0, scriptPath.lastIndexOf('/'));
-    
+    // Lấy pathname hiện tại
     const currentPath = window.location.pathname;
-    const currentDir = currentPath.substring(0, currentPath.lastIndexOf('/'));
     
-    const rootParts = rootPath.split('/').filter(p => p);
-    const currentParts = currentDir.split('/').filter(p => p);
+    // Đếm số slash sau phần cuối để xác định độ sâu folder
+    // Ví dụ: /web/index.html = 1 phần
+    //       /web/DoQuyet/contact.html = 2 phần
+    const lastSlashIndex = currentPath.lastIndexOf('/');
+    const beforeLastSlash = currentPath.substring(0, lastSlashIndex);
+    const pathDepth = (beforeLastSlash.match(/\//g) || []).length;
     
-    let commonIndex = 0;
-    for (let i = 0; i < Math.min(rootParts.length, currentParts.length); i++) {
-        if (rootParts[i] === currentParts[i]) {
-            commonIndex = i + 1;
-        } else {
-            break;
-        }
+    // Nếu ở thư mục gốc (index.html) thì không cần ../
+    // Nếu ở thư mục con (DoQuyet, Tho, user) thì cần ../
+    const isRootLevel = !currentPath.includes('/DoQuyet/') && 
+                       !currentPath.includes('/Tho/') && 
+                       !currentPath.includes('/THTrueMilk/') && 
+                       !currentPath.includes('/user/') &&
+                       !currentPath.includes('/dashboard/');
+    
+    if (isRootLevel) {
+        return './' + targetPath;
+    } else {
+        return '../' + targetPath;
     }
-    
-    const levelsUp = currentParts.length - commonIndex;
-    let relativePath = '../'.repeat(levelsUp);
-    
-    for (let i = commonIndex; i < rootParts.length; i++) {
-        relativePath += rootParts[i] + '/';
-    }
-    
-    return (relativePath || './') + targetPath;
 }
 
 function gotoAbout() {
