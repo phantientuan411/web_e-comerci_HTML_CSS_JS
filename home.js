@@ -418,9 +418,9 @@ function getNavPath(targetPath) {
                        !currentPath.includes('/dashboard/');
     
     if (isRootLevel) {
-        return './' + targetPath;
-    } else {
         return '../' + targetPath;
+    } else {
+        return './' + targetPath;
     }
 }
 
