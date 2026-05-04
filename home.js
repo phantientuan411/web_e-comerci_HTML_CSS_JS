@@ -399,29 +399,18 @@ function AddCart(event, index) {
 }
 
 function getNavPath(targetPath) {
-    // Lấy pathname hiện tại
     const currentPath = window.location.pathname;
     
-    // Đếm số slash sau phần cuối để xác định độ sâu folder
-    // Ví dụ: /web/index.html = 1 phần
-    //       /web/DoQuyet/contact.html = 2 phần
-    const lastSlashIndex = currentPath.lastIndexOf('/');
-    const beforeLastSlash = currentPath.substring(0, lastSlashIndex);
-    const pathDepth = (beforeLastSlash.match(/\//g) || []).length;
+    // Kiểm tra xem có ở trong folder con không
+    // Nếu là thư mục gốc (index.html) -> không cần ../
+    // Nếu ở thư mục con (DoQuyet, Tho, user, v.v.) -> cần ../
+    const isInSubfolder = currentPath.includes('/DoQuyet/') || 
+                         currentPath.includes('/Tho/') ||
+                         currentPath.includes('/THTrueMilk/') || 
+                         currentPath.includes('/user/') ||
+                         currentPath.includes('/dashboard/');
     
-    // Nếu ở thư mục gốc (index.html) thì không cần ../
-    // Nếu ở thư mục con (DoQuyet, Tho, user) thì cần ../
-    const isRootLevel = !currentPath.includes('/DoQuyet/') && 
-                       !currentPath.includes('/Tho/') && 
-                       !currentPath.includes('/THTrueMilk/') && 
-                       !currentPath.includes('/user/') &&
-                       !currentPath.includes('/dashboard/');
-    
-    if (isRootLevel) {
-        return '../' + targetPath;
-    } else {
-        return './' + targetPath;
-    }
+    return (isInSubfolder ? '../' : './') + targetPath;
 }
 
 function gotoAbout() {
