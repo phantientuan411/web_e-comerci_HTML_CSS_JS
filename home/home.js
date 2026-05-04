@@ -1,3 +1,4 @@
+
 const head = `
 <div class="sell_off">
                 <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</p>
@@ -30,7 +31,9 @@ const head = `
                             </button>
                             <button onclick='gotoUser()'>
                                 <i class="fa fa-user-circle-o" style="font-size: 20px;"></i>
+                                
                             </button>
+                            <p id="user_name"></p>
                         </div>
                     </div>
                 </div>
@@ -45,6 +48,9 @@ const slideData = [
     "https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:100/plain/https://dashboard.cellphones.com.vn/storage/iphone-17-256gb-tet-home26.jpg"
 
 ]
+let user = JSON.parse(localStorage.getItem("currentUser"))
+
+document.getElementById("user_name").innerText = user?.username || " ";
 
 const items = [
     // Gamepad
@@ -246,7 +252,6 @@ if (searchForm) {
     searchForm.addEventListener("submit", e => {
         e.preventDefault()
         const value = document.getElementById("searchInput").value.trim()
-        console.log(value)
     })
 }
 const auth = document.getElementById("auth")
@@ -255,6 +260,7 @@ if (alreadyLog === "1") {
     auth.innerText = "Logout";
     auth.onclick = () => {
         localStorage.removeItem("alreadyLogin");
+        localStorage.removeItem("currentUser")
         location.reload();
         localStorage.setItem("alreadyLogin", "0");
     }
@@ -330,13 +336,50 @@ if (productList) {
     }).join("")
 
 }
+const productListItem = document.getElementById("productListItem")
+if (productListItem){
+    productListItem.innerHTML = items.map((item, index) => {
 
+        const finalPrice = item.price * (1 - item.sale)
+        return `
+<div class="items" onClick="lastItemSelect(${index})">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <div class="heart-eye" onClick="handleHeart(event,${index})">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onClick="AddCart(event,${index})">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img" >
+            <img src="${item.anh_main}"> 
+        </div>
+        
+    </div>
+
+    <p>${item.name}</p>
+
+    <div class="item_price">
+         <span>$${item.price}</span>
+    </div>
+
+</div>
+`
+
+    }).join("")
+}
 function lastItemSelect(index) {
     const product = items[index];
     localStorage.setItem("lastItemSelected", JSON.stringify(product));
     window.location.href = "../DoQuyet/product.html";
 }
-function AddCart(event, index){
+function AddCart(event, index) {
     event.stopPropagation();
 
     const cartItem = items[index];
@@ -360,8 +403,8 @@ function gotoAbout() {
 function gotocontact() {
     window.location.href = "../DoQuyet/contact.html";
 }
-function gotoHome(){
-    window.location.href="../home/home.html";
+function gotoHome() {
+    window.location.href = "../home/home.html";
 
 }
 
@@ -381,7 +424,7 @@ function handleHeart(event, index) {
     localStorage.setItem("heart", JSON.stringify(heart));
 }
 
-const foot=`
+const foot = `
 
 
         <div class="col">
@@ -422,26 +465,26 @@ const foot=`
 
     
 `
-document.getElementById("foot").innerHTML=foot;
+document.getElementById("foot").innerHTML = foot;
 
 
 
-function gotoUser(){
-    if(alreadyLog !== "1"){
+function gotoUser() {
+    if (alreadyLog !== "1") {
         confirm("Hãy đăng nhập trước.")
 
     }
-    else{
-        window.location.href='../user/user.html'
+    else {
+        window.location.href = '../user/user.html'
     }
 }
 
-function gotocart(){
-    if(alreadyLog !== "1"){
+function gotocart() {
+    if (alreadyLog !== "1") {
         confirm("Hãy đăng nhập trước.")
 
     }
-    else{
-        window.location.href='../Tho/cart.html'
+    else {
+        window.location.href = '../Tho/cart.html'
     }
 }

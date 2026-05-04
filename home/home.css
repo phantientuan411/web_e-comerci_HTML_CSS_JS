@@ -1,10 +1,11 @@
 /*-----------------------------------home*/
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family:Arial;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
 }
+
 /*banner*/
 .sell_off {
   background-color: black;
@@ -23,16 +24,18 @@
 
 
 /*Nav bar*/
-header{
+header {
   position: sticky;
   top: 0;
   border-bottom: 1px solid black;
   background-color: #fff;
   z-index: 1000;
 }
-a{
+
+a {
   cursor: pointer;
 }
+
 .nav {
   display: flex;
   justify-content: center;
@@ -93,13 +96,16 @@ a{
 .input_btn:hover {
   cursor: pointer;
 }
-.user-btn ,.user-btn1{
+
+.user-btn,
+.user-btn1 {
   display: flex;
   height: 100%;
   gap: 2px;
   align-items: center;
 }
-.user-btn1 button{
+
+.user-btn1 button {
   display: block;
   align-items: center;
   justify-content: center;
@@ -108,11 +114,13 @@ a{
   width: 2vw;
   height: 45%;
 }
-.user-btn1 button:hover{
+
+.user-btn1 button:hover {
   cursor: pointer;
   color: red;
 }
-.user-btn1 button{
+
+.user-btn1 button {
   color: #424242;
 }
 
@@ -392,12 +400,12 @@ a{
   justify-content: center;
 }
 
-.heart i{ 
+.heart i {
   color: #545353;
-  
+
 }
 
-.heart i:hover{
+.heart i:hover {
   border: #e4dcdc;
   color: red;
 }
@@ -515,27 +523,33 @@ a{
 }
 
 /*-------------foot-----------------*/
-.footer{
+.footer {
   margin-top: 10vh;
   background-color: #000;
   color: aliceblue;
   display: flex;
   justify-content: space-around;
 }
-.col{
+
+.col {
   display: flex;
   flex-direction: column;
   gap: 1.5vh;
   margin: 5vh 3vw 10vh 3vw;
 }
-.col a{
+
+.col a {
   text-decoration: none;
   color: aliceblue;
   font-size: 14px;
 }
-.col.h5,col.h4,col.h3{
+
+.col.h5,
+col.h4,
+col.h3 {
   margin-bottom: 2vh;
 }
+
 .emailInput {
   display: flex;
   align-items: center;
@@ -560,7 +574,7 @@ a{
   border: none;
 }
 
-.emailInput button{
+.emailInput button {
   color: aliceblue;
 }
 
@@ -568,9 +582,113 @@ a{
   cursor: pointer;
 }
 
-.p-font1{
+.p-font1 {
   font-size: 14px;
 }
-.p-font{
+
+.p-font {
   font-size: 10px;
+}
+
+.categories_box {
+  margin-top: 2vh;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 15vh;
+  align-items: center;
+}
+
+.categories_box div {
+  width: 15%;
+  height: 15vh;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.categories_box i {
+  font-size: 30px;
+}
+
+.categories_box div:hover {
+  background-color: red;
+  color: #fff;
+  transition: 0.5s;
+}
+
+.newArive {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 20px;
+
+}
+
+.newArive .ps5,.three_box {
+  width: 49%;
+  height: 60vh;
+  cursor: pointer;
+}
+
+.ps5 {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../anh/ps5.jpg');
+}
+.ps5:hover{
+  transform: translateY(-10px);
+  transition: 0.5s;
+}
+
+.three_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.three_box div {
+  display: flex;
+  height: 49%;
+  justify-content: space-between;
+}
+.women{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../anh/woman.jpg');
+}
+.women:hover{
+    transform: translateY(-10px);
+  transition: 0.5s;
+}
+.three_box div div{
+  width: 49%;
+  height: 100%;
+}
+
+.speaker{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../anh/jbl.jpg');
+}
+.speaker:hover{
+    transform: translateY(-10px);
+  transition: 0.5s;
+}
+.perfum{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../anh/perfum.jpg');
+}
+.perfum:hover{
+    transform: translateY(-10px);
+  transition: 0.5s;
 }
