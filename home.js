@@ -67,9 +67,9 @@ const items = [
 
     // Tai nghe
     {
-        anh_main: "../anh/anhAirPod2.jpg",
-        anh1: "../anh/anhAirPod2_3.jpg",
-        anh2: "../anh/anhAirPod2_2.jpg",
+        anh_main: "./anh/anhAirPod2.jpg",
+        anh1: "./anh/anhAirPod2_3.jpg",
+        anh2: "./anh/anhAirPod2_2.jpg",
         name: "AirPods Pro 2",
         price: 250,
         sale: 0.15,
@@ -268,7 +268,7 @@ if (alreadyLog === "1") {
 else {
     auth.innerText = "Login";
     auth.onclick = () => {
-        window.location.href = "../THTrueMilk/login_registration.html"
+        window.location.href = "./THTrueMilk/login_registration.html"
     }
 }
 function updateClock() {
@@ -377,7 +377,7 @@ if (productListItem){
 function lastItemSelect(index) {
     const product = items[index];
     localStorage.setItem("lastItemSelected", JSON.stringify(product));
-    window.location.href = "../DoQuyet/product.html";
+    window.location.href = "./DoQuyet/product.html";
 }
 function AddCart(event, index) {
     event.stopPropagation();
@@ -397,15 +397,26 @@ function AddCart(event, index) {
 
     localStorage.setItem("cart", JSON.stringify(cart));
 }
+function getNavPath(targetPath) {
+    const path = window.location.pathname;
+    const pathParts = path.split('/').filter(p => p);
+    const webIndex = pathParts.findIndex(p => p === 'web');
+    
+    if (webIndex === -1) return targetPath;
+    
+    const depthFromWeb = pathParts.length - webIndex - 2;
+    const prefix = depthFromWeb > 0 ? '../'.repeat(depthFromWeb) : './';
+    return prefix + targetPath;
+}
+
 function gotoAbout() {
-    window.location.href = "../THTrueMilk/about.html";
-};
+    window.location.href = getNavPath("THTrueMilk/about.html");
+}
 function gotocontact() {
-    window.location.href = "../DoQuyet/contact.html";
+    window.location.href = getNavPath("DoQuyet/contact.html");
 }
 function gotoHome() {
-    window.location.href = "../home/index.html";
-
+    window.location.href = getNavPath("index.html");
 }
 
 function handleHeart(event, index) {
@@ -475,7 +486,7 @@ function gotoUser() {
 
     }
     else {
-        window.location.href = '../user/user.html'
+        window.location.href = './user/user.html'
     }
 }
 
@@ -485,6 +496,6 @@ function gotocart() {
 
     }
     else {
-        window.location.href = '../Tho/cart.html'
+        window.location.href = './Tho/cart.html'
     }
 }

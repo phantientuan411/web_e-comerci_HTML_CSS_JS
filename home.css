@@ -639,7 +639,7 @@ col.h3 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../anh/ps5.jpg');
+  background-image: url('./anh/ps5.jpg');
 }
 .ps5:hover{
   transform: translateY(-10px);
@@ -661,7 +661,7 @@ col.h3 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../anh/woman.jpg');
+  background-image: url('./anh/woman.jpg');
 }
 .women:hover{
     transform: translateY(-10px);
@@ -676,7 +676,7 @@ col.h3 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../anh/jbl.jpg');
+  background-image: url('./anh/jbl.jpg');
 }
 .speaker:hover{
     transform: translateY(-10px);
@@ -686,7 +686,7 @@ col.h3 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../anh/perfum.jpg');
+  background-image: url('./anh/perfum.jpg');
 }
 .perfum:hover{
     transform: translateY(-10px);

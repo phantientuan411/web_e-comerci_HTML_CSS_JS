@@ -1,7 +1,7 @@
 const loginAready = localStorage.getItem("alreadyLogin")
 if (loginAready !== "1") {
   const log = confirm("Bạn chưa đăng nhập!!!")
-  window.location.href = '../home/index.html'
+  window.location.href = '../index.html'
 }
 let img = document.getElementById("avatar");
 let fileInput = document.getElementById("fileInput");
@@ -241,7 +241,7 @@ function LogOut() {
   if (check) {
     localStorage.removeItem("alreadyLogin");
     localStorage.setItem("alreadyLogin", "0");
-    window.location.href = "../home/index.html";
+    window.location.href = "../index.html";
   }
 }
 AccountSetting();
