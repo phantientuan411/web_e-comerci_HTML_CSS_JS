@@ -399,22 +399,36 @@ function AddCart(event, index) {
 }
 
 function getNavPath(targetPath) {
+    // Lấy base path từ URL hiện tại
+    // GitHub Pages: /web_e-comerci_HTML_CSS_JS/index.html
+    // Localhost: /web/index.html
+    
     const currentPath = window.location.pathname;
     
-    // Tách path thành các phần
+    // Tách các segment của path
     const segments = currentPath.split('/').filter(Boolean);
     
-    // Độ sâu = số folder chứa file (không tính filename)
-    // Ví dụ:
-    // /repo/index.html -> segments = ['repo', 'index.html'] -> depth = 1 (gốc)
-    // /repo/DoQuyet/contact.html -> segments = ['repo', 'DoQuyet', 'contact.html'] -> depth = 2 (con)
-    const depth = segments.length - 1;
+    // Giả sử structure là: [repo/subfolder, ...folders, filename.html]
+    // Tìm index của file hiện tại
+    const currentFile = segments[segments.length - 1];
     
-    // Nếu ở gốc (depth <= 1) -> dùng ./
-    // Nếu ở folder con (depth >= 2) -> dùng ../
-    const isInSubfolder = depth >= 2;
+    // Những folder biết chắc là folder con (DoQuyet, Tho, THTrueMilk, user, dashboard)
+    const subfolders = ['DoQuyet', 'Tho', 'THTrueMilk', 'user', 'dashboard'];
     
-    return (isInSubfolder ? '../' : './') + targetPath;
+    // Kiểm tra xem cha của file hiện tại có phải folder con không
+    const parentFolder = segments.length > 1 ? segments[segments.length - 2] : '';
+    const isInSubfolder = subfolders.includes(parentFolder);
+    
+    // Lấy base path (tất cả segment trừ file cuối)
+    const basePath = segments.slice(0, -1).join('/');
+    
+    if (isInSubfolder) {
+        // Nếu ở folder con, lùi lại 1 level rồi vào target folder
+        return '../' + targetPath;
+    } else {
+        // Nếu ở root, đi thẳng vào target folder
+        return './' + targetPath;
+    }
 }
 
 function gotoAbout() {
