@@ -1,4 +1,3 @@
-
 const head = `
 <div class="sell_off">
                 <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</p>
@@ -268,7 +267,7 @@ if (alreadyLog === "1") {
 else {
     auth.innerText = "Login";
     auth.onclick = () => {
-        window.location.href = "./THTrueMilk/login_registration.html"
+        window.location.href = getNavPath("THTrueMilk/login_registration.html")
     }
 }
 function updateClock() {
@@ -377,7 +376,7 @@ if (productListItem){
 function lastItemSelect(index) {
     const product = items[index];
     localStorage.setItem("lastItemSelected", JSON.stringify(product));
-    window.location.href = "./DoQuyet/product.html";
+    window.location.href = getNavPath("DoQuyet/product.html");
 }
 function AddCart(event, index) {
     event.stopPropagation();
@@ -508,7 +507,7 @@ function gotoUser() {
 
     }
     else {
-        window.location.href = './user/user.html'
+        window.location.href = getNavPath('user/user.html')
     }
 }
 
@@ -518,6 +517,6 @@ function gotocart() {
 
     }
     else {
-        window.location.href = './Tho/cart.html'
+        window.location.href = getNavPath('Tho/cart.html')
     }
 }

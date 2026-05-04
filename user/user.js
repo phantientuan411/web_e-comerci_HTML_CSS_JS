@@ -1,15 +1,18 @@
 const loginAready = localStorage.getItem("alreadyLogin")
 if (loginAready !== "1") {
   const log = confirm("Bạn chưa đăng nhập!!!")
-  window.location.href = '../index.html'
+  window.location.href = getNavPath("index.html")
 }
 let img = document.getElementById("avatar");
 let fileInput = document.getElementById("fileInput");
 
-let user = JSON.parse(localStorage.getItem("currentUser")) || {};
+// Sử dụng biến 'user' đã được khai báo từ home.js, không khai báo lại
+if (!window.user) {
+  window.user = JSON.parse(localStorage.getItem("currentUser")) || {};
+}
 
-if (user.img) {
-  img.src = user.img;
+if (window.user.img) {
+  img.src = window.user.img;
 }
 
 img.onclick = () => {
@@ -27,14 +30,14 @@ fileInput.onchange = () => {
 
       img.src = base64;
 
-      let user = JSON.parse(localStorage.getItem("currentUser")) || {};
-      user.img = base64;
+      window.user = JSON.parse(localStorage.getItem("currentUser")) || {};
+      window.user.img = base64;
 
-      localStorage.setItem("currentUser", JSON.stringify(user));
+      localStorage.setItem("currentUser", JSON.stringify(window.user));
 
       let users = JSON.parse(localStorage.getItem("user")) || {};
-      if (user.email) {
-        users[user.email] = user;
+      if (window.user.email) {
+        users[window.user.email] = window.user;
         localStorage.setItem("user", JSON.stringify(users));
       }
     };
@@ -89,13 +92,13 @@ function AccountSetting() {
                     </div>
                 </form>
   `
-  if (user) {
-    document.getElementById("first_name").value = user.fname || "";
-    document.getElementById("last_name").value = user.lname || "";
-    document.getElementById("user_email").value = user.email || "";
-    document.getElementById("number").value = user.number || "";
-    document.getElementById("address").value = user.address || "";
-    document.getElementById("bio").value = user.bio || "";
+  if (window.user) {
+    document.getElementById("first_name").value = window.user.fname || "";
+    document.getElementById("last_name").value = window.user.lname || "";
+    document.getElementById("user_email").value = window.user.email || "";
+    document.getElementById("number").value = window.user.number || "";
+    document.getElementById("address").value = window.user.address || "";
+    document.getElementById("bio").value = window.user.bio || "";
   }
 }
 function passSet() {
@@ -178,7 +181,7 @@ function order(){
   container.innerHTML = html;
 }
 
-document.getElementById("name").innerText = user.username;
+document.getElementById("name").innerText = window.user.username;
 function updateInfor() {
   let fname = document.getElementById("first_name").value;
   let lname = document.getElementById("last_name").value;
@@ -186,20 +189,18 @@ function updateInfor() {
   let address = document.getElementById("address").value;
   let bio = document.getElementById("bio").value;
 
-  let user = JSON.parse(localStorage.getItem("currentUser")) || {};
+  window.user.fname = fname;
+  window.user.lname = lname;
+  window.user.number = number;
+  window.user.address = address;
+  window.user.bio = bio;
 
-  user.fname = fname;
-  user.lname = lname;
-  user.number = number;
-  user.address = address;
-  user.bio = bio;
-
-  localStorage.setItem("currentUser", JSON.stringify(user));
+  localStorage.setItem("currentUser", JSON.stringify(window.user));
 
   let users = JSON.parse(localStorage.getItem("user")) || {};
 
-  if (user.email) {
-    users[user.email] = user;
+  if (window.user.email) {
+    users[window.user.email] = window.user;
     localStorage.setItem("user", JSON.stringify(users));
   }
 
@@ -225,11 +226,11 @@ function updatePass() {
     return; 
   }
   else {
-    user.password = newPass;
-    localStorage.setItem("currentUser", JSON.stringify(user));
+    window.user.password = newPass;
+    localStorage.setItem("currentUser", JSON.stringify(window.user));
     let users = JSON.parse(localStorage.getItem("user")) || {};
-    if (user.email) {
-      users[user.email] = user;
+    if (window.user.email) {
+      users[window.user.email] = window.user;
       localStorage.setItem("user", JSON.stringify(users));
     }
     alert("cập nhật thành công.");
