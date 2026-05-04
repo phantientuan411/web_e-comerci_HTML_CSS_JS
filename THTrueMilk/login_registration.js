@@ -82,7 +82,7 @@ function HandleLogin() {
             localStorage.setItem("alreadyLogin", "1");
             localStorage.setItem("currentUser", JSON.stringify(user));
 
-            window.location.href = "../home/home.html";
+            window.location.href = "../home/index.html";
         } else {
             alert("Sai mật khẩu!");
         }

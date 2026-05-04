@@ -404,7 +404,7 @@ function gotocontact() {
     window.location.href = "../DoQuyet/contact.html";
 }
 function gotoHome() {
-    window.location.href = "../home/home.html";
+    window.location.href = "../home/index.html";
 
 }
 
