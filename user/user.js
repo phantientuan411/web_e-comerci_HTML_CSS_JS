@@ -6,7 +6,6 @@ if (loginAready !== "1") {
 let img = document.getElementById("avatar");
 let fileInput = document.getElementById("fileInput");
 
-// Sử dụng biến 'user' đã được khai báo từ home.js, không khai báo lại
 if (!window.user) {
   window.user = JSON.parse(localStorage.getItem("currentUser")) || {};
 }

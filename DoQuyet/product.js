@@ -1,4 +1,20 @@
 const item = JSON.parse(localStorage.getItem("lastItemSelected"))
+
+// Fix image paths for current page location (product page is in subfolder)
+function fixImagePath(path) {
+    if (path && path.includes('anh/')) {
+        return '../' + path;
+    }
+    return path;
+}
+
+if (item) {
+    item.anh_main = fixImagePath(item.anh_main);
+    item.anh1 = fixImagePath(item.anh1);
+    item.anh2 = fixImagePath(item.anh2);
+    item.anh3 = fixImagePath(item.anh3);
+}
+
 function renderStars(star) {
     let full = Math.floor(star);
     let half = star % 1 >= 0.5;

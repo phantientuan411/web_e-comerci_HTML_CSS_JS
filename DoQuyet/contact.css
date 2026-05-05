@@ -1,30 +1,45 @@
 /* 1. Thiết lập chung */
 body {
-    font-family: 'Poppins', sans-serif; /* Font thường dùng trong Figma này */
+    font-family: 'Poppins', sans-serif;
     background-color: #ffffff;
     margin: 0;
     font-family: 'Poppins', sans-serif;
 }
 
 .contact-wrapper {
-    max-width: 1170px; /* Độ rộng chuẩn của các mẫu thiết kế Web */
-    margin: 80px auto; /* Căn giữa toàn bộ trang web */
+    max-width: 1170px;
+    margin: 80px auto;
     padding: 0 15px;
 }
 
-/* 2. Chia 2 cột bằng Flexbox */
 .contact-container {
     display: flex;
-    gap: 30px; /* Khoảng cách giữa cột trái và phải */
+    gap: 30px;
+}
+.icon-title{
+    margin-top: 1vh;
+    display: flex;
+    align-items: center;
+}
+.contact-info {
+    flex: 1;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+.info-group{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    margin-bottom: 1vh;
+}
+.contact-form-section {
+    flex: 2.5;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Cột trái chiếm 1 phần, cột phải chiếm 2 phần */
-.contact-info { flex: 1; padding: 40px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
-.contact-form-section { flex: 2.5; padding: 40px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
-
-/* 3. Style cái nút và Icon theo màu Figma */
 .icon-red {
-    background-color: #DB4444; /* Mã màu đỏ chuẩn của mẫu này */
+    background-color: #DB4444;
     color: white;
     width: 40px;
     height: 40px;
@@ -53,14 +68,15 @@ body {
 }
 
 .form-row input {
-    flex: 1; /* Cả 3 ô chia đều độ rộng */
+    flex: 1;
+    /* Cả 3 ô chia đều độ rộng */
     background-color: #F5F5F5;
     border: none;
     padding: 13px;
     border-radius: 4px;
 }
 
-textarea{
+textarea {
     width: 100%;
     height: 200px;
     background-color: #F5F5F5;
@@ -76,7 +92,7 @@ textarea{
     margin-top: 24px;
 }
 
-.btn-send{
+.btn-send {
     background-color: #DB4444;
     color: white;
     padding: 16px 48px;
@@ -87,7 +103,7 @@ textarea{
     transition: 0.3s;
 }
 
-.btn-send:hover{
+.btn-send:hover {
     background-color: #b23535;
 }
 
@@ -95,14 +111,17 @@ textarea{
 /* Khi màn hình nhỏ hơn 768px (máy tính bảng và điện thoại) */
 @media screen and (max-width: 768px) {
     .contact-container {
-        flex-direction: column; /* Chuyển từ hàng ngang sang hàng dọc */
+        flex-direction: column;
+        /* Chuyển từ hàng ngang sang hàng dọc */
     }
 
     .form-row {
-        flex-direction: column; /* 3 ô input tên, email, sđt cũng xếp dọc */
+        flex-direction: column;
+        /* 3 ô input tên, email, sđt cũng xếp dọc */
     }
-    
+
     .contact-wrapper {
-        margin: 20px auto; /* Giảm khoảng cách lề cho màn hình nhỏ */
+        margin: 20px auto;
+        /* Giảm khoảng cách lề cho màn hình nhỏ */
     }
 }

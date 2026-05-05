@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family:  sans-serif;
 }
 
 body{
@@ -74,12 +74,10 @@ body{
 
 .name {
     text-transform: uppercase;
-    /* Bạn có thể thêm font-weight: bold; nếu muốn tên in đậm lên một chút cho nổi bật */
     font-weight: 600; 
-    color: #000; /* Tùy chọn: làm chữ tối màu hơn một chút để nhấn mạnh */
+    color: #000; 
 }
 
-/* --- SỬA LẠI ĐOẠN NÀY TRONG ABOUT.CSS --- */
 .story-image {
     flex: 1;
     position: relative;
@@ -93,7 +91,7 @@ body{
 
 .story-slide {
     display: none; 
-    position: absolute; /* Xếp chồng các ảnh lên nhau */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -147,9 +145,11 @@ body{
 .stat-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    background: #c9d6ff;
+    background: #000000;
 }
-
+.stat-card:hover h3,p{
+    color: white;
+}
 .icon-wrapper {
     width: 80px;
     height: 80px;
@@ -175,7 +175,6 @@ body{
     transition: all 0.3s ease;
 }
 
-/* Hiệu ứng đảo màu icon khi hover */
 .stat-card:hover .icon-wrapper {
     background: #dcdcdc;
 }
@@ -228,7 +227,6 @@ body{
     transition: transform 0.5s ease;
 }
 
-/* Lớp phủ mờ hiển thị tên & chức vụ khi hover */
 .overlay {
     position: absolute;
     top: 0;
@@ -287,7 +285,7 @@ body{
 }
 
 .socials-icon a:hover {
-    color: #007bff; /* Màu xanh khi hover, bạn có thể đổi tùy ý */
+    color: #007bff; 
     transform: translateY(-3px);
 }
 

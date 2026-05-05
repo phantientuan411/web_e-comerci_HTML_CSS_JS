@@ -1,5 +1,23 @@
 let checkout = JSON.parse(localStorage.getItem("cart"))
 let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+// Fix image paths for checkout items (checkout.html is in subfolder)
+function fixImagePath(path) {
+    if (path && path.includes('anh/')) {
+        return '../' + path;
+    }
+    return path;
+}
+
+if (checkout) {
+    checkout.forEach(item => {
+        item.anh_main = fixImagePath(item.anh_main);
+        item.anh1 = fixImagePath(item.anh1);
+        item.anh2 = fixImagePath(item.anh2);
+        item.anh3 = fixImagePath(item.anh3);
+    });
+}
+
 const checkoutitem = document.getElementById("item");
 
 function checkouttotal()

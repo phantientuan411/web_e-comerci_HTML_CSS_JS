@@ -50,6 +50,23 @@ function checkCoupon()
 
 let cart = JSON.parse(localStorage.getItem("cart"))
 
+// Fix image paths for cart items (cart.html is in subfolder)
+function fixImagePath(path) {
+    if (path && path.includes('anh/')) {
+        return '../' + path;
+    }
+    return path;
+}
+
+if (cart) {
+    cart.forEach(item => {
+        item.anh_main = fixImagePath(item.anh_main);
+        item.anh1 = fixImagePath(item.anh1);
+        item.anh2 = fixImagePath(item.anh2);
+        item.anh3 = fixImagePath(item.anh3);
+    });
+}
+
 const cartitem = document.getElementById("item");
 
 function getcart()

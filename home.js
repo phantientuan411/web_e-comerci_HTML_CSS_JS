@@ -7,7 +7,7 @@ const head = `
             <div class="nav">
                 <div class="nav_child">
 
-                    <h1>Exclusive</h1>
+                    <h1 onclick="gotoHome()">Exclusive</h1>
 
                     <div class="a_card">
                         <a id="Home" onclick="gotoHome()">Home</a>
@@ -40,6 +40,23 @@ const head = `
             </div>`
 
 document.getElementById("head").innerHTML = head;
+
+// Function to get correct image path based on current page location
+function getImagePath(relativePath) {
+    const currentPath = window.location.pathname;
+    const segments = currentPath.split('/').filter(Boolean);
+    
+    const subfolders = ['DoQuyet', 'Tho', 'THTrueMilk', 'user', 'dashboard'];
+    const parentFolder = segments.length > 1 ? segments[segments.length - 2] : '';
+    const isInSubfolder = subfolders.includes(parentFolder);
+    
+    if (isInSubfolder) {
+        return '../' + relativePath;
+    } else {
+        return './' + relativePath;
+    }
+}
+
 const slideData = [
     "https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:100/plain/https://dashboard.cellphones.com.vn/storage/iphone-17-256gb-tet-home26.jpg",
     "https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:100/plain/https://dashboard.cellphones.com.vn/storage/amazfit-max-home.png",
@@ -54,7 +71,10 @@ document.getElementById("user_name").innerText = user?.username || " ";
 const items = [
     // Gamepad
     {
-        anh_main: "https://png.pngtree.com/png-vector/20240830/ourlarge/pngtree-orange-gaming-controller-resting-on-a-transparent-background-showcasing-its-vibrant-png-image_13679959.png",
+        anh_main: "./anh/HAVIC0.jpg",
+        anh1: "./anh/HAVIC1.jpg",
+        anh2: "./anh/HAVIC2.jpg",
+        anh3: "./anh/HAVIC3.jpg",
         name: "HAVIT HV-G92 Gamepad",
         price: 120,
         sale: 0.2,
@@ -66,9 +86,10 @@ const items = [
 
     // Tai nghe
     {
-        anh_main: "./anh/anhAirPod2.jpg",
-        anh1: "./anh/anhAirPod2_3.jpg",
-        anh2: "./anh/anhAirPod2_2.jpg",
+        anh_main: "./anh/AIRPOD1.jpg",
+        anh1: "./anh/AIRPOD2.jpg",
+        anh2: "./anh/AIRPOD3.jpg",
+        anh3: "./anh/AIRPOD4.jpg",
         name: "AirPods Pro 2",
         price: 250,
         sale: 0.15,
@@ -80,7 +101,11 @@ const items = [
 
     // Dien thoai
     {
-        anh_main: "https://cdn.tgdd.vn/Products/Images/42/303825/iphone-15-pro-max-blue-1-750x500.jpg",
+        anh_main: "./anh/IP1.jpg",
+
+        anh1: "./anh/IP4.jpg",
+        anh2: "./anh/IP2.jpg",
+        anh3: "./anh/IP3.jpg",
         name: "iPhone 15 Pro Max",
         price: 1200,
         sale: 0.05,
@@ -92,7 +117,10 @@ const items = [
 
     // Laptop
     {
-        anh_main: "https://cdn.tgdd.vn/Products/Images/44/303123/macbook-air-m2-2022-750x500.jpg",
+        anh_main: "./anh/MAC1.jpg",
+        anh1: "./anh/MAC4.jpg",
+        anh2: "./anh/MAC2.jpg",
+        anh3: "./anh/MAC3.jpg",
         name: "MacBook Air M2",
         price: 999,
         sale: 0.1,
@@ -105,7 +133,11 @@ const items = [
 
     // Ban phim
     {
-        anh_main: "https://cdn.tgdd.vn/Products/Images/4547/307080/ban-phim-co-rgb-750x500.jpg",
+        anh_main: "./anh/KEYBOARD.png",
+
+        anh1: "./anh/KEYBOARD 1.webp",
+        anh2: "./anh/KEYBOARD 2.webp",
+        anh3: "./anh/KEYBOARD 3.webp",
         name: "Mechanical Keyboard RGB",
         price: 150,
         sale: 0.2,
@@ -117,7 +149,11 @@ const items = [
 
     // Chuot
     {
-        anh_main: "https://cdn.tgdd.vn/Products/Images/86/302512/chuot-gaming-rgb-750x500.jpg",
+        anh_main: "./anh/Gaming Mouse.jpg",
+
+        anh1: "./anh/Gaming Mouse 1.jpg",
+        anh2: "./anh/Gaming Mouse 2.jpg",
+        anh3: "./anh/Gaming Mouse 3.jpg",
         name: "Gaming Mouse",
         price: 60,
         sale: 0.15,
@@ -129,7 +165,11 @@ const items = [
 
     // Man hinh
     {
-        anh_main: "https://cdn.tgdd.vn/Products/Images/86/302800/man-hinh-lg-27-inch-750x500.jpg",
+        anh_main: "./anh/LG 27.jpg",
+
+        anh1: "./anh/LG 27 1.png",
+        anh2: "./anh/LG 27 2.png",
+        anh3: "./anh/LG 27 3.png",
         name: "LG 27\" Monitor",
         price: 300,
         sale: 0.12,
@@ -141,7 +181,10 @@ const items = [
 
     // Smartwatch
     {
-        anh_main: "https://cdn.tgdd.vn/Products/Images/7077/299123/apple-watch-series-9-750x500.jpg",
+        anh_main: "./anh/A P W 9.jpg",
+        anh1: "./anh/A P W 9 3.jpg",
+        anh2: "./anh/A P W 9 1.jpg",
+        anh3: "./anh/A P W 9 2.jpg",
         name: "Apple Watch Series 9",
         price: 400,
         sale: 0.1,
@@ -153,7 +196,11 @@ const items = [
 
     // Loa bluetooth
     {
-        anh_main: "https://cdn.tgdd.vn/Products/Images/2162/302123/loa-jbl-750x500.jpg",
+        anh_main: "./anh/JBL BLU.png",
+
+        anh1: "./anh/JBL BLU 1.png",
+        anh2: "./anh/JBL BLU 2.png",
+        anh3: "./anh/JBL BLU 3.png",
         name: "JBL Bluetooth Speaker",
         price: 180,
         sale: 0.2,
@@ -163,7 +210,10 @@ const items = [
         waterproof: ['IPX5', 'IPX7']
     },
     {
-        anh_main: "https://cdn.tgdd.vn/Products/Images/2162/302123/loa-jbl-750x500.jpg",
+        anh_main: "./anh/LG 27.jpg",
+        anh1: "./anh/LG 27 3.png",
+        anh2: "./anh/LG 27 1.png",
+        anh3: "./anh/LG 27 2.png",
         name: "JBL Bluetooth Speaker",
         price: 180,
         sale: 0.2,
@@ -173,6 +223,23 @@ const items = [
         waterproof: ['IPX5', 'IPX7']
     }
 ];
+
+// Fix all image paths in items array based on current page location
+items.forEach(item => {
+    if (item.anh_main && item.anh_main.includes('./anh/')) {
+        item.anh_main = getImagePath(item.anh_main.replace('./', ''));
+    }
+    if (item.anh1 && item.anh1.includes('./anh/')) {
+        item.anh1 = getImagePath(item.anh1.replace('./', ''));
+    }
+    if (item.anh2 && item.anh2.includes('./anh/')) {
+        item.anh2 = getImagePath(item.anh2.replace('./', ''));
+    }
+    if (item.anh3 && item.anh3.includes('./anh/')) {
+        item.anh3 = getImagePath(item.anh3.replace('./', ''));
+    }
+});
+
 const slidesContainer = document.getElementById("slides");
 const sliderWrapper = slidesContainer?.parentElement;
 
@@ -336,7 +403,7 @@ if (productList) {
 
 }
 const productListItem = document.getElementById("productListItem")
-if (productListItem){
+if (productListItem) {
     productListItem.innerHTML = items.map((item, index) => {
 
         const finalPrice = item.price * (1 - item.sale)
@@ -401,26 +468,26 @@ function getNavPath(targetPath) {
     // Lấy base path từ URL hiện tại
     // GitHub Pages: /web_e-comerci_HTML_CSS_JS/index.html
     // Localhost: /web/index.html
-    
+
     const currentPath = window.location.pathname;
-    
+
     // Tách các segment của path
     const segments = currentPath.split('/').filter(Boolean);
-    
+
     // Giả sử structure là: [repo/subfolder, ...folders, filename.html]
     // Tìm index của file hiện tại
     const currentFile = segments[segments.length - 1];
-    
+
     // Những folder biết chắc là folder con (DoQuyet, Tho, THTrueMilk, user, dashboard)
     const subfolders = ['DoQuyet', 'Tho', 'THTrueMilk', 'user', 'dashboard'];
-    
+
     // Kiểm tra xem cha của file hiện tại có phải folder con không
     const parentFolder = segments.length > 1 ? segments[segments.length - 2] : '';
     const isInSubfolder = subfolders.includes(parentFolder);
-    
+
     // Lấy base path (tất cả segment trừ file cuối)
     const basePath = segments.slice(0, -1).join('/');
-    
+
     if (isInSubfolder) {
         // Nếu ở folder con, lùi lại 1 level rồi vào target folder
         return '../' + targetPath;
