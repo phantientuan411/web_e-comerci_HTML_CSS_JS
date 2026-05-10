@@ -390,7 +390,7 @@ if (productList) {
         
     </div>
 
-    <p class="line">${item.name}</p>
+    <p>${item.name}</p>
 
     <div class="item_price">
         <span>$${finalPrice.toFixed(2)}</span>
@@ -430,7 +430,7 @@ if (productListItem) {
         
     </div>
 
-    <p class="line">${item.name}</p>
+    <p>${item.name}</p>
 
     <div class="item_price">
          <span>$${item.price}</span>

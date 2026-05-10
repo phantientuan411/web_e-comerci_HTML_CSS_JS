@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://127.0.0.1:5500/New%20folder/web/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Exclusive</title>
+    <link rel="stylesheet" href="./Exclusive_files/font-awesome.min.css">
+    <link rel="stylesheet" href="./Exclusive_files/home.css">
+</head>
+
+<body>
+
+    <div class="Home">
+        <header id="head">
+<div class="sell_off">
+                <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</p>
+                <h4><a href="http://127.0.0.1:5500/New%20folder/web/index.html">Shop Now</a></h4>
+            </div>
+
+            <div class="nav">
+                <div class="nav_child">
+
+                    <h1 onclick="gotoHome()">Exclusive</h1>
+
+                    <div class="a_card">
+                        <a id="Home" onclick="gotoHome()">Home</a>
+                        <a id="Contact" onclick="gotocontact()">Contact</a>
+                        <a id="about" onclick="gotoAbout()">About</a>
+                        <a class="auth" id="auth">Logout</a>
+                    </div>
+                    <div class="user-btn">
+                        <form class="search" id="searchForm">
+                            <input type="text" class="input_search" placeholder="Tìm kiếm" id="searchInput">
+                            <button class="input_btn"><i class="fa fa-search"></i></button>
+                        </form>
+
+                        <div class="user-btn1">
+                            <button>
+                                <i class="fa fa-heart" style="font-size: 20px;"></i>
+                            </button>
+                            <button onclick="gotocart()">
+                                <i class="fa fa-shopping-cart" style="font-size: 20px;"></i>
+                            </button>
+                            <button onclick="gotoUser()">
+                                <i class="fa fa-user-circle-o" style="font-size: 20px;"></i>
+                                
+                            </button>
+                            <p id="user_name">khadepjai</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div></header>
+
+        <div class="selector">
+            <div class="slider">
+
+                <button class="btn_slide_left" onclick="prev()">←</button>
+
+                <div class="slides" id="slides" style="transition: transform 0.5s; transform: translateX(-1370px);">
+            <div style="width:428px; height:100%; flex-shrink:0;">
+                <img src="./Exclusive_files/iphone-17-256gb-tet-home26.webp">
+            </div>
+        
+            <div style="width:428px; height:100%; flex-shrink:0;">
+                <img src="./Exclusive_files/iphone-17-256gb-tet-home26.webp">
+            </div>
+        
+            <div style="width:428px; height:100%; flex-shrink:0;">
+                <img src="./Exclusive_files/amazfit-max-home.webp">
+            </div>
+        
+            <div style="width:428px; height:100%; flex-shrink:0;">
+                <img src="./Exclusive_files/may-tinh-de-ban-1.webp">
+            </div>
+        
+            <div style="width:428px; height:100%; flex-shrink:0;">
+                <img src="./Exclusive_files/iphone-17-256gb-tet-home26.webp">
+            </div>
+        
+            <div style="width:428px; height:100%; flex-shrink:0;">
+                <img src="./Exclusive_files/iphone-17-256gb-tet-home26.webp">
+            </div>
+        </div>
+
+                <button class="btn_slide_right" onclick="next()">→</button>
+
+            </div>
+            <div class="right_slider">
+                <div>
+                    <img src="./Exclusive_files/sg-11134258-820mw-mnxxayxydvr7da@resize_w796_nl.webp" alt="">
+                </div>
+                <div>
+                    <img src="./Exclusive_files/sg-11134258-820ni-mnxx4hns2a6c23@resize_w796_nl.webp" alt="">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="content">
+
+            <div class="flSale">
+
+                <div class="banner">
+
+                    <div class="top">
+                        <div class="box"></div>
+                        <p class="time">Today's</p>
+                    </div>
+
+                    <div class="title">
+                        <h2>Flash Sales</h2>
+
+                        <div class="clock">
+
+                            <div>
+                                <p>Day</p>
+                                <span id="day">00</span>
+                            </div>
+
+                            <span>:</span>
+
+                            <div>
+                                <p>Hours</p>
+                                <span id="hour">02</span>
+                            </div>
+
+                            <span>:</span>
+
+                            <div>
+                                <p>Minutes</p>
+                                <span id="min">21</span>
+                            </div>
+
+                            <span>:</span>
+
+                            <div>
+                                <p>Seconds</p>
+                                <span id="second">56</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="product" id="productList">
+<div class="items" onclick="lastItemSelect(0)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <span class="sale">-20%</span>                    
+                <div class="heart-eye" onclick="handleHeart(event,0)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,0)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/HAVIC0.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>HAVIT HV-G92 Gamepad</p>
+
+    <div class="item_price">
+        <span>$96.00</span>
+        <span class="price">$120</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(1)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <span class="sale">-15%</span>                    
+                <div class="heart-eye" onclick="handleHeart(event,1)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,1)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/AIRPOD1.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>AirPods Pro 2</p>
+
+    <div class="item_price">
+        <span>$212.50</span>
+        <span class="price">$250</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(2)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <span class="sale">-5%</span>                    
+                <div class="heart-eye" onclick="handleHeart(event,2)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,2)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/IP1.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>iPhone 15 Pro Max</p>
+
+    <div class="item_price">
+        <span>$1140.00</span>
+        <span class="price">$1200</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(3)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <span class="sale">-10%</span>                    
+                <div class="heart-eye" onclick="handleHeart(event,3)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,3)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/MAC1.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>MacBook Air M2</p>
+
+    <div class="item_price">
+        <span>$899.10</span>
+        <span class="price">$999</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(4)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <span class="sale">-20%</span>                    
+                <div class="heart-eye" onclick="handleHeart(event,4)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,4)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/KEYBOARD.png"> 
+        </div>
+        
+    </div>
+
+    <p>Mechanical Keyboard RGB</p>
+
+    <div class="item_price">
+        <span>$120.00</span>
+        <span class="price">$150</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(5)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <span class="sale">-15%</span>                    
+                <div class="heart-eye" onclick="handleHeart(event,5)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,5)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/Gaming Mouse.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>Gaming Mouse</p>
+
+    <div class="item_price">
+        <span>$51.00</span>
+        <span class="price">$60</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(6)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <span class="sale">-12%</span>                    
+                <div class="heart-eye" onclick="handleHeart(event,6)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,6)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/LG 27.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>LG 27" Monitor</p>
+
+    <div class="item_price">
+        <span>$264.00</span>
+        <span class="price">$300</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(7)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <span class="sale">-10%</span>                    
+                <div class="heart-eye" onclick="handleHeart(event,7)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,7)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/A P W 9.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>Apple Watch Series 9</p>
+
+    <div class="item_price">
+        <span>$360.00</span>
+        <span class="price">$400</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(8)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <span class="sale">-20%</span>                    
+                <div class="heart-eye" onclick="handleHeart(event,8)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,8)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/JBL BLU.png"> 
+        </div>
+        
+    </div>
+
+    <p>JBL Bluetooth Speaker</p>
+
+    <div class="item_price">
+        <span>$144.00</span>
+        <span class="price">$180</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(9)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <span class="sale">-20%</span>                    
+                <div class="heart-eye" onclick="handleHeart(event,9)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,9)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/LG 27.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>JBL Bluetooth Speaker</p>
+
+    <div class="item_price">
+        <span>$144.00</span>
+        <span class="price">$180</span>
+    </div>
+
+</div>
+</div>
+
+                    <button class="showAll">View All Product</button>
+
+                </div>
+
+            </div>
+            <hr>
+            <div class="flSale">
+
+                <div class="banner">
+
+                    <div class="top">
+                        <div class="box"></div>
+                        <p class="time">Categories</p>
+                    </div>
+
+                    <div class="title">
+                        <h2>Browse By Category</h2>
+                    </div>
+
+                </div>
+                <div class="categories_box">
+                    <div>
+                        <i class="fa fa-mobile" aria-hidden="true"></i>
+                        <p>Phones</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <p>Computers</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <p>SmartWatch</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-camera" aria-hidden="true"></i>
+                        <p>Camera</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-headphones" aria-hidden="true"></i>
+                        <p>HeadPhones</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-gamepad" aria-hidden="true"></i>
+                        <p>Gaming</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="flSale">
+
+                <div class="banner">
+
+                    <div class="top">
+                        <div class="box"></div>
+                        <p class="time">This Month</p>
+                    </div>
+
+                    <div class="title">
+                        <h2>Best Selling Products</h2>
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+            <div class="flSale">
+
+                <div class="banner">
+
+                    <div class="top">
+                        <div class="box"></div>
+                        <p class="time">Our Products</p>
+                    </div>
+
+                    <div class="title">
+                        <h2>Explore Our Products</h2>
+                    </div>
+                    <div class="product" id="productListItem">
+<div class="items" onclick="lastItemSelect(0)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <div class="heart-eye" onclick="handleHeart(event,0)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,0)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/HAVIC0.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>HAVIT HV-G92 Gamepad</p>
+
+    <div class="item_price">
+         <span>$120</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(1)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <div class="heart-eye" onclick="handleHeart(event,1)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,1)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/AIRPOD1.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>AirPods Pro 2</p>
+
+    <div class="item_price">
+         <span>$250</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(2)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <div class="heart-eye" onclick="handleHeart(event,2)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,2)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/IP1.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>iPhone 15 Pro Max</p>
+
+    <div class="item_price">
+         <span>$1200</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(3)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <div class="heart-eye" onclick="handleHeart(event,3)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,3)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/MAC1.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>MacBook Air M2</p>
+
+    <div class="item_price">
+         <span>$999</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(4)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <div class="heart-eye" onclick="handleHeart(event,4)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,4)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/KEYBOARD.png"> 
+        </div>
+        
+    </div>
+
+    <p>Mechanical Keyboard RGB</p>
+
+    <div class="item_price">
+         <span>$150</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(5)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <div class="heart-eye" onclick="handleHeart(event,5)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,5)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/Gaming Mouse.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>Gaming Mouse</p>
+
+    <div class="item_price">
+         <span>$60</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(6)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <div class="heart-eye" onclick="handleHeart(event,6)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,6)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/LG 27.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>LG 27" Monitor</p>
+
+    <div class="item_price">
+         <span>$300</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(7)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <div class="heart-eye" onclick="handleHeart(event,7)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,7)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/A P W 9.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>Apple Watch Series 9</p>
+
+    <div class="item_price">
+         <span>$400</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(8)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <div class="heart-eye" onclick="handleHeart(event,8)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,8)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/JBL BLU.png"> 
+        </div>
+        
+    </div>
+
+    <p>JBL Bluetooth Speaker</p>
+
+    <div class="item_price">
+         <span>$180</span>
+    </div>
+
+</div>
+
+<div class="items" onclick="lastItemSelect(9)">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <div class="heart-eye" onclick="handleHeart(event,9)">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onclick="AddCart(event,9)">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img">
+            <img src="./Exclusive_files/LG 27.jpg"> 
+        </div>
+        
+    </div>
+
+    <p>JBL Bluetooth Speaker</p>
+
+    <div class="item_price">
+         <span>$180</span>
+    </div>
+
+</div>
+</div>
+
+                    <button class="showAll">View All Product</button>
+                </div>
+            </div>
+            <hr>
+            <div class="flSale">
+
+                <div class="banner">
+
+                    <div class="top">
+                        <div class="box"></div>
+                        <p class="time">Featured</p>
+                    </div>
+
+                    <div class="title">
+                        <h2>New Arrival</h2>
+                    </div>
+                    <div class="newArive">
+                        <div class="ps5">ps5</div>
+                        <div class="three_box">
+                            <div class="women">
+                            </div>
+                            <div>
+                                <div class="speaker"></div>
+                                <div class="perfum"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="icon">
+            <div>
+                <div class="o">
+                    <div class="io">
+                        <i class="fa fa-truck"></i>
+                    </div>
+                </div>
+                <h4>FREE AND FAST DELIVERY</h4>
+                <p>Free delivery for all orders over $140</p>
+            </div>
+            <div>
+                <div class="o">
+                    <div class="io">
+                        <i class="fa fa-headphones"></i>
+                    </div>
+                </div>
+                <h4>24/7 CUSTOMER SERVICE</h4>
+                <p>Friendly 24/7 customer support</p>
+            </div>
+            <div>
+                <div class="o">
+                    <div class="io">
+                        <i class="fa fa-money"></i>
+                    </div>
+                </div>
+                <h4>MONEY BACK GUARANTEE</h4>
+                <p>We reurn money within 30 days</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer" id="foot">
+
+
+        <div class="col">
+            <h3>Exclusive</h3>
+            <h5>Subscribe</h5>
+            <p>Get 10% off your first order</p>
+
+            <form class="emailInput" id="emailForm">
+                <input type="text" placeholder="Enter your email" id="emailInput">
+                <button><i class="fa fa-paper-plane-o"></i></button>
+            </form>
+
+        </div>
+        <div class="col">
+            <h4>Support</h4>
+            <p class="p-font1">111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</p>
+            <p class="p-font1">exclusive@gmail.com</p>
+            <p class="p-font1">+88015-88888-9999</p>
+        </div>
+        <div class="col">
+            <h4>Account</h4>
+            <a href="http://127.0.0.1:5500/New%20folder/web/index.html">My Account</a>
+            <div style="display: flex;">
+                <a href="http://127.0.0.1:5500/New%20folder/web/index.html">Login</a>
+                <p>/</p><a href="http://127.0.0.1:5500/New%20folder/web/index.html">Register</a>
+            </div>
+            <a href="http://127.0.0.1:5500/New%20folder/web/index.html">Cart</a>
+            <a href="http://127.0.0.1:5500/New%20folder/web/index.html">Wishlist</a>
+            <a href="http://127.0.0.1:5500/New%20folder/web/index.html">Shop</a>
+        </div>
+        <div class="col">
+            <h4>Quick link</h4>
+            <p class="p-font1">Privacy Policy</p>
+            <p class="p-font1">Terms Of Use</p>
+            <p class="p-font1">FAQ</p>
+            <p class="p-font1">Contact</p>
+        </div>
+
+    
+</div>
+
+    <script src="./Exclusive_files/home.js.download"></script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>

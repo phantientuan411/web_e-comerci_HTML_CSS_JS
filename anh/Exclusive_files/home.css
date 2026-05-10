@@ -138,12 +138,11 @@ a {
 
 
 .selector {
-  height: 40vh;
+  height: 20vh;
   margin-top: 5vh;
   margin-left: 10vw;
   width:  80%;
   display: flex;
-  gap: 1%;
 }
 
 
@@ -202,32 +201,28 @@ a {
 
 .slider {
   background-color: rgb(0, 0, 0);
-  width:70%;
+  width: 50%;
   height: 100%;
   position: relative;
   overflow: hidden;
 }
 
-.right_slider {
+.right_slider{
   display: flex;
   flex-direction: column;
-  width:29%;
-  height: 40vh;
-  gap: 10px;
+  width: 20%;
+  height:20vh;
 }
-
-.right_slider div {
+.right_slider div{
   height: 50%;
   width: 100%;
-  overflow: hidden;
 }
-
-.right_slider img {
-  width: 100%;
-  height: 100%;
+.right_slider img{  
   object-fit: cover;
+  flex-shrink: 0;
   display: block;
 }
+
 
 .slider img {
   width: 100%;
@@ -377,7 +372,7 @@ a {
   justify-content: center;
   aspect-ratio: 1;
 }
-.view  h3,.line,.item_price{
+.view h3,p,.item_price{
   width: auto;
   margin-bottom: 3px;
   text-align: center;
@@ -428,8 +423,8 @@ a {
 .heart-eye {
   display: flex;
   flex-direction: column;
-  width:10%;
-  margin-left: 90%;
+  width: auto;
+  margin-left: 11vw
 }
 
 .heart {
