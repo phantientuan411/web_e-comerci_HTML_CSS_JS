@@ -402,6 +402,43 @@ if (productList) {
 
     }).join("")
 
+}const bestSell = document.getElementById("bestSell")
+if (bestSell) {
+    bestSell.innerHTML = items.map((item, index) => {
+
+        const finalPrice = item.price * (1 - item.sale)
+        return `
+<div class="items" onClick="lastItemSelect(${index})">
+    <div class="view">
+        <div class="view_btn">
+            <div class="btn">
+                <div class="heart-eye" onClick="handleHeart(event,${index})">
+                    <div class="heart">
+                        <i class="fa fa-heart  heart-btn"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="addBtn" onClick="AddCart(event,${index})">
+                    <p>Add to card</p>
+            </button>
+        </div>    
+        
+        <div class="view_img" >
+            <img src="${item.anh_main}"> 
+        </div>
+        
+    </div>
+
+    <p class="line">${item.name}</p>
+
+    <div class="item_price">
+         <span>$${item.price}</span>
+    </div>
+
+</div>
+`
+
+    }).join("")
 }
 const productListItem = document.getElementById("productListItem")
 if (productListItem) {
@@ -441,6 +478,7 @@ if (productListItem) {
 
     }).join("")
 }
+
 function lastItemSelect(index) {
     const product = items[index];
     localStorage.setItem("lastItemSelected", JSON.stringify(product));

@@ -97,7 +97,7 @@ document.getElementById("mainP").innerHTML = `
 
                 <div class="services-box">
                     <div class="service-item">
-                        <div class="icon">🚚</div>
+                        <div class="icon-i">🚚</div>
                         <div class="text">
                             <h3>Free Delivery</h3>
                             <p><a href="#">Enter your postal code for Delivery Availability</a></p>
@@ -105,7 +105,7 @@ document.getElementById("mainP").innerHTML = `
                     </div>
 
                     <div class="service-item">
-                        <div class="icon">🔄</div>
+                        <div class="icon-i">🔄</div>
                         <div class="text">
                             <h3>Return Delivery</h3>
                             <p>Free 30 Days Delivery Returns. <a href="#">Details</a></p>

@@ -63,7 +63,8 @@ function HandleRegister() {
     users[email] = { username, email, password };
 
     localStorage.setItem("user", JSON.stringify(users));
-
+    console.log(users);
+    
     alert("Đăng ký thành công!");
 }
 
