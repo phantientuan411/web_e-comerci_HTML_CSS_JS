@@ -1,0 +1,200 @@
+.container{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding-left: 50px;
+}
+
+.Home{
+    text-decoration: none;
+    color: gray;
+}
+
+.Home:hover{
+    color: black;
+}
+
+.Cart{
+    text-decoration: none;
+    color: gray;
+}
+
+.Cart:hover{
+    color: black;
+}
+
+.Checkout{
+    font-weight: bold;
+    color: black;
+}
+
+.bill{
+    display: flex;
+    margin-top: 30px;
+    margin-left: 50px;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.checkoutbody{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
+}
+
+.reg{
+    color: red;
+}
+
+.error{
+    display: none;
+    font-size: 14px;
+    color: red;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    max-width: 400px;
+}
+
+input[type="text"], input[type="email"]{
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: whitesmoke;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.checkout-item{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.oder{
+    width: 500px;
+}
+
+.product-info{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.product-subtotal{
+    display: flex;
+    justify-content: end;
+}
+
+.product-img{
+    width: 60px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.row1{
+    display: flex;
+    justify-content: space-between;
+}
+
+.row2{
+    display: flex;
+    justify-content: space-between;
+}
+
+.row3{
+    display: none;
+}
+
+.hrcp{
+    display: none;
+}
+
+.row4{
+    display: flex;
+    justify-content: space-between;
+}
+
+.method{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.bank-icon{
+    width: 40px;
+}
+
+.coupon{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.coupon-code input{
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    width: 200px;
+    outline: none;
+}
+
+.apply-coupon button{
+    padding: 10px 20px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+}
+
+.apply-coupon button:hover{
+    background-color: green;
+}
+
+.message{
+    margin-top: 10px;
+    font-size: 14px;
+    display: none;
+}
+
+.message.success{
+    color: green;
+    display: block;
+}
+
+.message.error{
+    color: red;
+    display: block;
+}
+
+.gotosuccess button{
+    padding: 10px 20px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.gotosuccess button:hover{
+    background-color: green;
+}
+
+.msg{
+    display: none;
+    font-size: 14px;
+    color: red;
+}

@@ -2,9 +2,21 @@ const item = JSON.parse(localStorage.getItem("lastItemSelected"))
 
 // Fix image paths for current page location (product page is in subfolder)
 function fixImagePath(path) {
-    if (path && path.includes('anh/')) {
-        return '../' + path;
+    if (!path) return path;
+    
+    // Remove leading ./ if present
+    let cleanPath = path.startsWith('./') ? path.slice(2) : path;
+    
+    // Check if already has ../ prefix or is an absolute path
+    if (cleanPath.startsWith('../') || cleanPath.startsWith('http')) {
+        return cleanPath;
     }
+    
+    // Add ../ for local anh/ paths
+    if (cleanPath.includes('anh/')) {
+        return '../' + cleanPath;
+    }
+    
     return path;
 }
 
@@ -42,7 +54,18 @@ function loadSelectedColor(item) {
         }
     });
 }
-document.getElementById("mainP").innerHTML = `
+
+// Check if item data exists before rendering
+if (!item) {
+    document.getElementById("mainP").innerHTML = `
+        <div style="text-align: center; padding: 40px;">
+            <h2>No product data found</h2>
+            <p>Please select a product from the home page</p>
+            <button onclick="window.location.href='../index.html'" style="padding: 10px 20px; background: #FF9500; color: white; border: none; cursor: pointer;">Back to Home</button>
+        </div>
+    `;
+} else {
+    document.getElementById("mainP").innerHTML = `
             <div class="product-gallery">
                 <div class="thumbnails">
                     <div class="thumb-box"><img src="${item.anh_main}" alt=""></div>
@@ -91,7 +114,7 @@ document.getElementById("mainP").innerHTML = `
                         <input type="number" id="qty-value" value="1" readonly>
                         <button id="plus" class="plus">+</button>
                     </div>
-                    <button class="btn-buy">Buy Now</button>
+                    <button class="btn-buy" onclick="buyNow()">Buy Now</button>
                     <div class="wishlist-icon">❤️</div>
                 </div>
 
@@ -115,99 +138,116 @@ document.getElementById("mainP").innerHTML = `
             </div>
 `
 // 1. Xử lý Tăng/Giảm số lượng
-const minusBtn = document.getElementById('minus');
-const plusBtn = document.getElementById('plus');
-const qtyInput = document.getElementById('qty-value');
+    const minusBtn = document.getElementById('minus');
+    const plusBtn = document.getElementById('plus');
+    const qtyInput = document.getElementById('qty-value');
 
-if (minusBtn && plusBtn) {
-    plusBtn.onclick = () => {
-        qtyInput.value = parseInt(qtyInput.value) + 1;
-    };
+    if (minusBtn && plusBtn) {
+        plusBtn.onclick = () => {
+            qtyInput.value = parseInt(qtyInput.value) + 1;
+        };
 
-    minusBtn.onclick = () => {
-        let val = parseInt(qtyInput.value);
-        if (val > 1) qtyInput.value = val - 1;
-    };
-}
+        minusBtn.onclick = () => {
+            let val = parseInt(qtyInput.value);
+            if (val > 1) qtyInput.value = val - 1;
+        };
+    }
 
-// 2. Xử lý Chọn Size
-const sizeBoxes = document.querySelectorAll('.size-box');
+    // 2. Xử lý Chọn Size
+    const sizeBoxes = document.querySelectorAll('.size-box');
 
-sizeBoxes.forEach(box => {
-    box.onclick = () => {
-        // Xóa class active ở các ô khác
-        sizeBoxes.forEach(b => b.classList.remove('active'));
-        // Thêm class active vào ô vừa chọn
-        box.classList.add('active');
-    };
-});
-
-// 2.1. Xử lý Chọn Màu
-const colorCircles = document.querySelectorAll('.circle');
-
-colorCircles.forEach(circle => {
-    circle.addEventListener('click', () => {
-        colorCircles.forEach(c => c.classList.remove('active'));
-        circle.classList.add('active');
+    sizeBoxes.forEach(box => {
+        box.onclick = () => {
+            // Xóa class active ở các ô khác
+            sizeBoxes.forEach(b => b.classList.remove('active'));
+            // Thêm class active vào ô vừa chọn
+            box.classList.add('active');
+        };
     });
-});
 
-// 3. Xử lý đổi ảnh lớn khi click vào thumbnail
-const thumbnails = document.querySelectorAll('.thumbnails img');
-const mainImage = document.querySelector('.main-image img');
+    // 2.1. Xử lý Chọn Màu
+    const colorCircles = document.querySelectorAll('.circle');
 
-if (thumbnails.length && mainImage) {
-    thumbnails.forEach(thumb => {
-        thumb.addEventListener('click', () => {
-            mainImage.src = thumb.src;
-            thumbnails.forEach(t => t.classList.remove('active'));
-            thumb.classList.add('active');
+    colorCircles.forEach(circle => {
+        circle.addEventListener('click', () => {
+            colorCircles.forEach(c => c.classList.remove('active'));
+            circle.classList.add('active');
         });
     });
 
-    // Mặc định chọn thumbnail đầu tiên khi trang tải
-    thumbnails[0].classList.add('active');
+    // 3. Xử lý đổi ảnh lớn khi click vào thumbnail
+    const thumbnails = document.querySelectorAll('.thumbnails img');
+    const mainImage = document.querySelector('.main-image img');
+
+    if (thumbnails.length && mainImage) {
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                mainImage.src = thumb.src;
+                thumbnails.forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        });
+
+        // Mặc định chọn thumbnail đầu tiên khi trang tải
+        thumbnails[0].classList.add('active');
+    }
+
+    // 4. Xử lý Modal cho sản phẩm liên quan
+    const modal = document.getElementById('product-modal');
+    const closeModal = document.querySelector('.close-modal');
+
+    if (modal && closeModal) {
+        // Đóng modal khi click vào X
+        closeModal.onclick = () => {
+            modal.style.display = 'none';
+        };
+
+        // Đóng modal khi click bên ngoài
+        window.onclick = (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        // Xử lý click vào eye icon
+        document.addEventListener('click', (event) => {
+            if (event.target.closest('.card-icons svg:nth-child(2)')) { // Eye icon là svg thứ 2
+                const productCard = event.target.closest('.product-card');
+                if (productCard) {
+            z        // Lấy thông tin từ product card
+                    const imgSrc = productCard.querySelector('.image-box img').src;
+                    const name = productCard.querySelector('.product-name').textContent;
+                    const currentPrice = productCard.querySelector('.current-price').textContent;
+                    const oldPrice = productCard.querySelector('.old-price').textContent;
+                    const rating = productCard.querySelector('.product-rating').innerHTML;
+
+                    // Điền vào modal
+                    document.getElementById('modal-image').src = imgSrc;
+                    document.getElementById('modal-name').textContent = name;
+                    document.getElementById('modal-current-price').textContent = currentPrice;
+                    document.getElementById('modal-old-price').textContent = oldPrice;
+                    document.getElementById('modal-rating').innerHTML = rating;
+
+                    // Hiển thị modal
+                    modal.style.display = 'flex';
+                }
+            }
+        });
+    }
+}
+function buyNow(){
+    let quantity = document.getElementById('qty-value').value
+    let iteam = JSON.parse(localStorage.getItem("lastItemSelected"))
+    iteam.quantity =(quantity);
+    console.log(iteam);
+    localStorage.setItem("buy",JSON.stringify(iteam))
+    window.location.href="../checkout/checkout.html"
 }
 
-// 4. Xử lý Modal cho sản phẩm liên quan
-const modal = document.getElementById('product-modal');
-const closeModal = document.querySelector('.close-modal');
-
-if (modal && closeModal) {
-    // Đóng modal khi click vào X
-    closeModal.onclick = () => {
-        modal.style.display = 'none';
-    };
-
-    // Đóng modal khi click bên ngoài
-    window.onclick = (event) => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    };
-
-    // Xử lý click vào eye icon
-    document.addEventListener('click', (event) => {
-        if (event.target.closest('.card-icons svg:nth-child(2)')) { // Eye icon là svg thứ 2
-            const productCard = event.target.closest('.product-card');
-            if (productCard) {
-                // Lấy thông tin từ product card
-                const imgSrc = productCard.querySelector('.image-box img').src;
-                const name = productCard.querySelector('.product-name').textContent;
-                const currentPrice = productCard.querySelector('.current-price').textContent;
-                const oldPrice = productCard.querySelector('.old-price').textContent;
-                const rating = productCard.querySelector('.product-rating').innerHTML;
-
-                // Điền vào modal
-                document.getElementById('modal-image').src = imgSrc;
-                document.getElementById('modal-name').textContent = name;
-                document.getElementById('modal-current-price').textContent = currentPrice;
-                document.getElementById('modal-old-price').textContent = oldPrice;
-                document.getElementById('modal-rating').innerHTML = rating;
-
-                // Hiển thị modal
-                modal.style.display = 'flex';
-            }
-        }
-    });
+function getNavPath(targetPath) {
+    // product.js is in a subfolder (DoQuyet), so we need to go up one level
+    if (targetPath.startsWith('./')) {
+        return '../' + targetPath.slice(2);
+    }
+    return targetPath;
 }

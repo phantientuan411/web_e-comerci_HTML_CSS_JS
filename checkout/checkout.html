@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="checkout.css">
+    <title>Check out</title>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="Home">Home</a>
+        <span>/</span>
+        <a href="cart.html" class="Cart">Cart</a>
+        <span>/</span>
+        <div class="Checkout">
+            <span>CheckOut</span>
+        </div>
+    </div>
+    <div class="bill">
+        <span>Billing Details</span>
+    </div>
+    <div class="checkoutbody">
+        <form id="form">
+            <div class="form-group">
+                <label>First Name<span class="reg">*</span></label>
+                <input type="text" id="name">
+                <p id="msgname" class="error"></p>
+            </div>
+            <div class="form-group">
+                <label>Company Name</label>
+                <input type="text" id="companyname">
+            </div>
+            <div class="form-group">
+                <label>Street Address<span class="reg">*</span></label>
+                <input type="text" id="address">
+                <p id="msgaddress" class="error"></p>
+            </div>
+            <div class="form-group">
+                <label>Apartment, floor, etc. (optional)</label>
+                <input type="text" id="apartment">
+            </div>
+            <div class="form-group">
+                <label>Town / City<span class="reg">*</span></label>
+                <input type="text" id="city">
+                <p id="msgcity" class="error"></p>
+            </div>
+            <div class="form-group">
+                <label>Phone Number<span class="reg">*</span></label>
+                <input type="text" id="phone">
+                <p id="msgphone" class="error"></p>
+            </div>
+            <div class="form-group">
+                <label>Email Address<span class="reg">*</span></label>
+                <input type="email" id="email">
+                <p id="msgemail" class="error"></p>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" id="agree">
+                <label>Save this information for faster check-out next time</label>
+            </div>
+        </form>
+        <div class="oder">
+            <div class="payment" id="item">
+            </div>
+            <div class="row1">
+                <span>Subtotal: </span>
+                <span id="subtotal"></span>
+            </div>
+            <hr>
+            <div class="row2">
+                <span>Ship: </span>
+                <span>Free</span>
+            </div>
+            <hr>
+            <div class="row3" id="couponrow">
+                <span>Discount: </span>
+                <span id="coupontotal"></span>
+            </div>
+            <hr class="hrcp" id="couponhr">
+            <div class="row4">
+                <span>Total: </span>
+                <span id="total"></span>
+            </div>
+            <div class="checkout-method">
+                <div class="method">
+                    <div>
+                    <input type="radio" name="checkout" id="bank">
+                    <label for="bank">Bank</label>
+                    </div>
+                    <div>
+                    <img src="visa.webp" alt="visa" class="bank-icon">
+                    <img src="mastercard.png" alt="mastercard" class="bank-icon">
+                    </div>
+                </div>
+                <div class="method">
+                    <div>
+                    <input type="radio" name="checkout" id="cod">
+                    <label for="cod">Cash on delivery</label>
+                    </div>
+                </div>
+            </div>
+            <div class="coupon">
+                <div class="coupon-code">
+                    <input type="text" id="coupon-input" placeholder="Coupon Code">
+                    <p id="coupon-message" class="message"></p>
+                </div>
+                <div class="apply-coupon">
+                    <button onclick="checkCoupon()">Apply Coupon</button>
+                </div>
+            </div>
+            <div class="gotosuccess">
+                <button onclick="gotosuccess()">Place Order</button>
+            </div>
+            <p id="msg" class="msg"></p>
+        </div>
+    </div>
+    <script src="checkout.js"></script>
+</body>
+</html>
