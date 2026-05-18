@@ -125,12 +125,12 @@ function passSet() {
                     </div>
                 </form>`
 }
-function order(){
+function order() {
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
 
   const container = document.getElementById("user_main");
 
-  if(orders.length === 0){
+  if (orders.length === 0) {
     container.innerHTML = `<p>No orders found</p>`;
     return;
   }
@@ -141,13 +141,19 @@ function order(){
 
     let itemsHtml = "";
 
-    order.items.forEach(item => {
+    const items = Array.isArray(order.items)
+      ? order.items
+      : [order.items];
+
+    items.forEach(item => {
+
       itemsHtml += `
-        <div class="order_item">
-          <span>${item.name} (x${item.quantity})</span>
-          <span>$${(item.price * item.quantity).toFixed(2)}</span>
-        </div>
-      `;
+    <div class="order_item">
+      <span>${item.name} (x${item.quantity})</span>
+      <span>$${(item.price * item.quantity).toFixed(2)}</span>
+    </div>
+  `;
+
     });
 
     html += `
@@ -220,9 +226,9 @@ function updatePass() {
     const check = alert("Mật khẩu bạn nhập không khớp !!");
     return;
   }
-  else if(newPass === ""){
+  else if (newPass === "") {
     alert("Mật khẩu không được trống.");
-    return; 
+    return;
   }
   else {
     window.user.password = newPass;
